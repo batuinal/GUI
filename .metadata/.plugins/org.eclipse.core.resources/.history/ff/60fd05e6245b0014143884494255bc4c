@@ -1,0 +1,34 @@
+package ara; 
+
+import java.awt.FlowLayout; 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.*; 
+
+import static java.lang.System.out; 
+
+public class HomeClass extends JFrame 
+{
+	private JButton dogButton; 
+	private JButton catButton; 
+	private JButton cowButton; 
+	private JLabel label; 
+	private HomeListener actionListener; 
+	
+	public HomeClass (String inTitle)
+	{
+		super (inTitle); 
+		setLayout (new FlowLayout()); 
+		dogButton = new JButton (new ImageIcon ("dogIcon.jpg")); 
+		
+	}
+	public class HomeListener implements ActionListener
+	{
+		public void actionPerformed (ActionEvent e)
+		{
+			
+		}
+	}
+	
+}

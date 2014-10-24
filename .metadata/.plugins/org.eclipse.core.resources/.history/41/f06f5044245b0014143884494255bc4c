@@ -1,0 +1,13 @@
+package ara; 
+
+import java.awt.FlowLayout;
+import java.awt.*; 
+import javax.swing.*; 
+import static java.lang.System.out; 
+
+public class HomeClass {
+	public static void main (String [] arc)
+	{
+	
+	}
+}

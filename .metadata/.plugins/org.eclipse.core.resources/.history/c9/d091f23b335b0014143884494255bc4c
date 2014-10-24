@@ -1,0 +1,103 @@
+package ara;
+
+import java.awt.event.ActionEvent; 
+import java.awt.event.ActionListener; 
+import java.awt.BorderLayout;
+import java.awt.FlowLayout; 
+
+import javax.swing.JLabel;
+import javax.swing.JFrame;
+import javax.swing.JButton; 
+import javax.swing.ImageIcon; 
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+
+import ara.HomeFrame.HomeListener;
+import static java.lang.System.out; 
+
+
+public class gameFrame extends JFrame
+{
+	// Variable Declaration
+	private JLabel header;
+	private JTextField searchField; 
+	private JButton selectButton; 
+	private SongSelectListener buttonListener; 
+	private JButton okButton; 
+	private JButton backButton; 
+	
+	// Temp Buttons for now
+	private JButton songOneButton; 
+	private JButton songTwoButton; 
+	private JButton songThreeButton; 
+	
+	public gameFrame (String inTitle)
+	{
+		
+	}
+	
+	public class SongSelectListener implements ActionListener
+	{
+		public void actionPerformed (ActionEvent e)
+		{
+			// logic on selecting a song
+			if (e.getSource() == okButton){
+				out.println("Song selected via ok"); 
+			}
+			else if (e.getSource() == backButton){
+				out.println("Reset Selected"); 
+				// Show HomeFrame
+				HomeFrame home = new HomeFrame("Home");
+				home.setVisible(true); // show frame
+				home.setSize(300, 350); 
+			}
+			else if (e.getSource() == songOneButton){
+				out.println("Song One was selected!"); 
+			}
+			else if (e.getSource() == songTwoButton){
+				out.println("Song two was selected!"); 
+			}
+			else if (e.getSource() == songThreeButton){
+				out.println("Song Three was selected!"); 
+			}
+		}
+	} // end of songSelectListener	
+} // end of songSelectFrame
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

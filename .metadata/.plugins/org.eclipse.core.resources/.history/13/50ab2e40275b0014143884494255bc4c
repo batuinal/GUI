@@ -1,0 +1,16 @@
+package ara;
+
+import java.awt.FlowLayout; 
+import javax.swing.JFrame; 
+
+public class Home 
+{
+	public static void main (String []args)
+	{
+		HomeFrame win; 
+		
+		 
+		
+		
+	}
+}

@@ -1,0 +1,48 @@
+package ara;
+
+import java.awt.event.ActionEvent; 
+import java.awt.event.ActionListener; 
+import java.awt.FlowLayout; 
+import javax.swing.JLabel;
+import javax.swing.JFrame;
+import javax.swing.JButton; 
+import javax.swing.ImageIcon; 
+import static java.lang.System.out; 
+
+
+public class HomeFrame extends JFrame
+{
+	private JButton dogButton; 
+	private JButton catButton; 
+	private JButton cowButton; 
+	private JLabel label; 
+	private HomeListener actionListener; 
+	
+	public HomeFrame (String inTitle)
+	{
+		 super(inTitle); 
+		 setLayout(new FlowLayout()); 
+		 
+		 dogButton = new JButton ("Dog Button"); 
+		 add(dogButton); 
+		 
+		 catButton = new JButton ("Cat Button"); 
+		 add(catButton); 
+		 
+		 cowButton = new JButton ("Cow Button"); 
+		 add(cowButton); 
+		 
+		 label = new JLabel("Sound: "); 
+		 add (Label); 
+	}
+	
+	public class HomeListener implements ActionListener
+	{
+		public void actionPerformed (ActionEvent e)
+		{
+			// logic for button 
+		}
+	}
+	
+	
+}

@@ -1,0 +1,124 @@
+package ara;
+
+import java.awt.event.ActionEvent; 
+import java.awt.event.ActionListener; 
+import java.awt.BorderLayout;
+import java.awt.FlowLayout; 
+
+import javax.swing.JLabel;
+import javax.swing.JFrame;
+import javax.swing.JButton; 
+import javax.swing.ImageIcon; 
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+
+import ara.HomeFrame.HomeListener;
+import static java.lang.System.out; 
+
+
+public class SongSelectFrame extends JFrame
+{
+	// Variable Declaration
+	private JLabel header;
+	private JTextField searchField; 
+	private JButton selectButton; 
+	private SongSelectListener buttonListener; 
+	private JButton okButton; 
+	private JButton resetButton; 
+	
+	public SongSelectFrame (String inTitle)
+	{
+		super(inTitle); // always first
+		
+		JPanel headerPanel; 
+		JPanel songPanel; 
+		JPanel buttonPanel; 
+		
+		// Header Panel
+		headerPanel = new JPanel (new FlowLayout()); 
+		headerPanel.add (new JLabel ("Select a song to begin!", SwingConstants.CENTER));
+		
+		// Name Field 
+		songPanel = new JPanel( new FlowLayout());
+		// *** Need to pull songs from database and loop over all songs available ** 
+		songPanel.add (new JLabel("Song One, Level: HARD", SwingConstants.RIGHT));
+		
+		songPanel.add (new JButton("Select Song One"));
+		songPanel.add(new JLabel(" Song Two, Level: MEDIUM   ", SwingConstants.RIGHT)); 
+		songPanel.add(new JButton ("Select Song Two")); 
+		songPanel.add(new JLabel(" Song Three, Level: EASY", SwingConstants.RIGHT));
+		songPanel.add (new JButton ("Select Song Three"));
+		
+		// Button Fields
+		resetButton = new JButton("Reset"); 
+		okButton = new JButton ("OK"); 
+		buttonPanel = new JPanel(new FlowLayout());
+		buttonPanel.add(resetButton);
+		buttonPanel.add (okButton); 
+	
+		// GUI Layout
+		setLayout(new BorderLayout()); 
+		add(headerPanel, BorderLayout.NORTH);
+		add(songPanel, BorderLayout.CENTER); 
+		add(buttonPanel, BorderLayout.SOUTH);
+		
+		// Button Listeners
+		buttonListener = new SongSelectListener(); 
+		resetButton.addActionListener(buttonListener); 
+		okButton.addActionListener(buttonListener); 	
+	}
+	
+	public class SongSelectListener implements ActionListener
+	{
+		public void actionPerformed (ActionEvent e)
+		{
+			// logic on selecting a song
+			if (e.getSource() == okButton){
+				out.println("Song selected via ok"); 
+			}
+			else if (e.getSource() == resetButton){
+				out.println("Reset Selected"); 
+			}
+			
+			
+		}
+	} // end of HomeListener	
+} // end of HomeFrame 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,16 @@
+package ara; 
+
+import java.awt.FlowLayout;
+import javax.swing.*; 
+
+public class index {
+	public static void main (String [] arc)
+	{
+	  //System.out.println("Hello");
+		JFrame win; 
+		win = new JFrame ("Oliver's Window"); 
+		win.setSize(220, 125); 
+		win.setVisible(true); // displays frame on screen
+		win.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  // causes app to exit when x clicked
+	}
+}

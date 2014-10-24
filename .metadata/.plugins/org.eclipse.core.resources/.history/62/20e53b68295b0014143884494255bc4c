@@ -1,0 +1,63 @@
+package ara;
+
+import java.awt.event.ActionEvent; 
+import java.awt.event.ActionListener; 
+import java.awt.FlowLayout; 
+
+import javax.swing.JLabel;
+import javax.swing.JFrame;
+import javax.swing.JButton; 
+import javax.swing.ImageIcon; 
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+
+import static java.lang.System.out; 
+
+
+public class HomeFrame extends JFrame
+{
+	// Variable Declaration 
+	private JTextField firstNameField; 
+	private JTextField lastNameField; 
+	private JButton clearButton; 
+	private JButton okButton; 
+	private FormButtonListener buttonListener; 
+	
+	public HomeFrame (String inTitle)
+	{
+		super(inTitle); // always first
+		
+		JPanel namePanel; 
+		JPanel centerTopPanel; 
+		JPanel centerPanel; 
+		JPanel buttonPanel; 
+		
+		// Name Field 
+		firstNameField = new JTextField(20); 
+		lastNameField = new JTextField(20); 
+		namePanel = new JPanel( new FlowLayout()); 
+		namePanel.add (new JLabel("First Name: ", SwingConstants.RIGHT)); 
+		namePanel.add (firstNameField); 
+		namePanel.add(new JLabel("Last Name: ", SwingConstants.RIGHT)); 
+		namePanel.add (lastNameField); 
+		
+		// Button Fields
+		clearButton = new JButton("Clear"); 
+		okButton = new JButton ("OK"); 
+		buttonPanel = new JPanel(new FlowLayout());
+		buttonPanel.add(clearButton);
+		buttonPanel.add (okButton); 
+		
+		setLayout(new BorderLayout()); 
+		
+	}
+	
+	public class HomeListener implements ActionListener
+	{
+		public void actionPerformed (ActionEvent e)
+		{
+			// Logic on button click 
+		}
+	} // end of HomeListener	
+} // end of HomeFrame 

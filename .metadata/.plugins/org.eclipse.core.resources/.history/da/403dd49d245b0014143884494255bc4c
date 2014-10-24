@@ -1,0 +1,30 @@
+package ara; 
+
+import java.awt.*; 
+import java.awt.event.ActionListener;
+
+import javax.swing.*; 
+
+import static java.lang.System.out; 
+
+public class HomeClass extends JFrame 
+{
+	private JButton dogButton; 
+	private JButton catButton; 
+	private JButton cowButton; 
+	private JLabel label; 
+	private HomeListener actionListener; 
+	
+	public HomeClass (String inTitle)
+	{
+			
+	}
+	public class HomeListener implements ActionListener
+	{
+		public void actionPerformed (ActionEvent e)
+		{
+			
+		}
+	}
+	
+}

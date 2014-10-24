@@ -1,0 +1,12 @@
+package ara; 
+
+import java.awt.FlowLayout;
+import javax.swing.*; 
+
+
+public class index {
+	public static void main (String [] arc)
+	{
+	  System.out.println("Hello");	
+	}
+}
