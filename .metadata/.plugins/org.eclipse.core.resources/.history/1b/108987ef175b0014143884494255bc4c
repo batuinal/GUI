@@ -1,0 +1,6 @@
+package ara;
+
+public class index {
+	
+	System.out.("hello world"); 
+}

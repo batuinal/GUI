@@ -1,0 +1,9 @@
+package ara;
+
+import.java.util*; 
+
+public class index {
+	
+int test; 
+	System.out.println("tset"); 
+}

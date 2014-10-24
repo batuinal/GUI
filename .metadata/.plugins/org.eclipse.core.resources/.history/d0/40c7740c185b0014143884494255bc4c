@@ -1,0 +1,7 @@
+package ara;
+
+public class index {
+	
+int test; 
+	System.out.println("tset"); 
+}
