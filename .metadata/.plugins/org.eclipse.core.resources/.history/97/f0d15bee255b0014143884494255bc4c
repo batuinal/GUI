@@ -1,9 +1,0 @@
-package ara;
-
-import java.awt.Event;.ActionEvent; 
-import java.awt.event.ActionLIstener; 
-import java.awt.FlowLayout; 
-
-public class HomeFrame {
-
-}
