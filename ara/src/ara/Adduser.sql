@@ -1,2 +1,2 @@
-INSERT INTO USERINFO (userid, username, password)
-Values (0, 'zhangrf', 'zhangrf');
+INSERT INTO USERINFO (userid, username)
+Values (0, 'zhangrf');
