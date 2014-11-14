@@ -12,6 +12,7 @@ public class MyListener implements AudioListener {
 	int sensitivity=300; // how many time to wait between beats in ms
 	String onda="";
 
+	long startTime = 0;
 	long lastTime = 0;
 	long diff = 3000;
 	
@@ -30,6 +31,7 @@ public class MyListener implements AudioListener {
 		this.as=as;
 		kickSize = snareSize = hatSize = 16;
 		time=System.currentTimeMillis();
+		startTime = System.currentTimeMillis();
 	}
 
 	@Override
@@ -42,13 +44,14 @@ public class MyListener implements AudioListener {
 		beat.detect(samp);
 		if(System.currentTimeMillis()-time>sensitivity){
 			// if(beat.isHat()){
-			// System.out.println(ÒHATÓ);
+			// System.out.println(ÒHA TÓ);
 			// }
 			if(beat.isOnset()){
 				time=System.currentTimeMillis();
-				if(time - lastTime > diff){
-					System.out.println("BEAT");					
-				}
+//				if(time - lastTime > diff){
+//				System.out.println(time);
+//				System.out.println("BEAT2");					
+//				}
 				lastTime = time;
 			}
 			if(beat.isKick()){
@@ -85,9 +88,10 @@ public class MyListener implements AudioListener {
 			// System.out.println(ÒHATÓ);
 			// }
 			if(beat.isOnset()){
-				System.out.println("BEAT");
-				onda+="beat";
 				time=System.currentTimeMillis();
+				System.out.println(time - startTime);
+//				System.out.println("BEATz");
+				onda+="beat";
 			}
 			if(beat.isKick()){
 				time=System.currentTimeMillis();
@@ -99,7 +103,7 @@ public class MyListener implements AudioListener {
 			// System.out.println(ÒSNAREÓ);
 			// }
 			// for(int i=0;i<1;i++){
-			System.out.println();
+//			System.out.println();
 
 			// }
 
