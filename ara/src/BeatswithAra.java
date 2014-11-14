@@ -29,11 +29,21 @@ import javax.swing.JButton;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 
 import javax.swing.ImageIcon;
 
 import ara.Database;
 import ara.SongSelectFrame;
+
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+
+import javazoom.jl.decoder.JavaLayerException;
+import javazoom.jl.player.Player;
 
 
 public class BeatswithAra
@@ -42,7 +52,8 @@ public class BeatswithAra
   private JFrame frame;
   private JTextField textField;
   private static int nextID = 0;
-  
+  private final Action action = new SwingAction();
+  private static Player player;
   
   /**
    * Launch the application.
@@ -64,6 +75,25 @@ public class BeatswithAra
         }
       }
     });
+    
+    try
+    {
+      File file = new File("music1.mp3");
+      FileInputStream fis = new FileInputStream(file);
+      BufferedInputStream bis = new BufferedInputStream(fis);
+      try
+      {
+        player = new Player(bis);
+        player.play();
+        
+      } catch(JavaLayerException ex1)
+      {
+        ex1.printStackTrace();
+      }
+    } catch(IOException ex)
+    {
+       ex.printStackTrace();
+    }
   }
 
   /**
@@ -149,21 +179,20 @@ public class BeatswithAra
           String username = textField.getText();
           if(gamedb.userexist(username))
           {
-            JOptionPane.showMessageDialog(textField, "Username Exists", "Username Error", JOptionPane.ERROR_MESSAGE);
+            gamedb.disconnect();
           }
           else
           {
             nextID++;
             gamedb.adduser(nextID, username);
-
-            SongSelectFrame songFrame = new SongSelectFrame(textField.getText());
-            songFrame.setSize(450, 500);
-            songFrame.setVisible(true);
-
-            out.printf("Hello %s, Welcome to Beats with Ara! \n",
-                textField.getText());
+            gamedb.disconnect();
           }
-          gamedb.disconnect();
+          player.close();
+          Songselect songFrame = new Songselect(textField.getText());
+          songFrame.setVisible(true);
+          frame.setVisible(false);
+          out.printf("Hello %s, Welcome to Beats with Ara! \n",
+              textField.getText());   
 
           // Open Song Select Frame, passing in username
           
@@ -174,5 +203,16 @@ public class BeatswithAra
     lblNewLabel.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\music.jpg"));
     lblNewLabel.setBounds(0, 0, 990, 706);
     frame.getContentPane().add(lblNewLabel);
+    
+    
+    
+  }
+  private class SwingAction extends AbstractAction {
+    public SwingAction() {
+      putValue(NAME, "SwingAction");
+      putValue(SHORT_DESCRIPTION, "Some short description");
+    }
+    public void actionPerformed(ActionEvent e) {
+    }
   }
 }

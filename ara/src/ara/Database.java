@@ -64,7 +64,7 @@ public class Database
     {
       stmt = con.createStatement();
       sql = "CREATE TABLE USERINFO " + "(userid INTEGER, "
-          + " username CHAR(20) NOT NULL, " + " password CHAR(20) NOT NULL, "
+          + " username CHAR(20) NOT NULL, "
           + " PRIMARY KEY (userid))";
       // System.out.println(sql);
       stmt.executeUpdate(sql);
@@ -104,13 +104,13 @@ public class Database
     }
   }
 
-  public void adduser(int userid, String username, String password)
+  public void adduser(int userid, String username)
   {
     try
     {
       stmt = con.createStatement();
-      sql = "INSERT INTO USERINFO (userid, username, password) " +
-            " Values (" + userid + ", '" + username + "', '" + password + "')";
+      sql = "INSERT INTO USERINFO (userid, username) " +
+            " Values (" + userid + ", '" + username + "')";
       stmt.executeUpdate(sql);
       System.out.println("Success to insert userinfo");
     }
@@ -119,5 +119,49 @@ public class Database
       System.out.println("Fail to insert userinfo");
       e.printStackTrace();
     }
+  }
+  
+  public int currentid()
+  {
+    int resultid = 0;
+    try
+    {
+      stmt = con.createStatement();
+      sql = "SELECT Max(userid) FROM USERINFO";      
+      ResultSet rs = stmt.executeQuery(sql);
+      if(rs.next())
+      {
+        resultid = rs.getInt("Max(userid)");
+      }
+      System.out.println("Success to get currentid");
+    }
+    catch( SQLException e )
+    {
+      System.out.println("Fail to get currentid");
+      e.printStackTrace();
+    }
+    return resultid;
+  }
+  
+  public boolean userexist(String username)
+  {
+    boolean isExist = Boolean.FALSE;
+    try
+    {
+      stmt = con.createStatement();
+      sql = "SELECT * FROM USERINFO WHERE USERNAME = '" + username + "'";      
+      ResultSet rs = stmt.executeQuery(sql);
+      if(rs.next())
+      {
+        isExist = Boolean.TRUE;
+      }
+      System.out.println("Success to check username");
+    }
+    catch( SQLException e )
+    {
+      System.out.println("Fail to check username");
+      e.printStackTrace();
+    }
+    return isExist;
   }
 }

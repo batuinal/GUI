@@ -12,8 +12,7 @@ public class Home
     // Open up HomeFrame (user sign in frame)
     HomeFrame win;
     win = new HomeFrame("Welcome to Beats with Ara!");
-    win.setSize(300, 350);
-    win.setVisible(true);
-    win.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    //win.setSize(300, 350);
+    
   }
 }

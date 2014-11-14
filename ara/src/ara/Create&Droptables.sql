@@ -1,7 +1,6 @@
 CREATE TABLE USERINFO
 	(userid     INTEGER,	
 	username    CHAR(20) NOT NULL,
-	password    CHAR(20) NOT NULL,
 	PRIMARY KEY (userid));
 
 CREATE TABLE SCORE
