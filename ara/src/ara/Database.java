@@ -208,4 +208,30 @@ public class Database
     }
     return isExist;
   }
+  
+  public String getsongName(String scale, int songNum)
+  {
+    String result = "";
+    try
+    {
+      stmt = con.createStatement();
+      sql = "SELECT SONGNAME FROM SONG WHERE SONGSCALE = '" + scale + "'";
+      ResultSet rs = stmt.executeQuery(sql);
+      int counter = 1;
+      while(rs.next()){
+        if(counter == songNum){
+          result = rs.getString("SONGNAME");
+          break;
+        }
+        counter++;
+      }
+      System.out.println("Success to get songname");
+    }
+    catch( SQLException e )
+    {
+      System.out.println("Fail to getsongname");
+      e.printStackTrace();
+    }
+    return result;
+  }
 }

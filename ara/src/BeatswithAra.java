@@ -15,10 +15,15 @@ import java.awt.Font;
 
 import javax.swing.JTextArea;
 
+import java.awt.Canvas;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.Rectangle;
 
 import javax.swing.JTextField;
 import javax.swing.BoxLayout;
@@ -63,6 +68,9 @@ public class BeatswithAra
   private JButton btnEasy;
   private JButton btnMedium;
   private JButton btnHard;
+  private JButton btnsongName1;
+  private JButton btnsongName2;
+  private JButton btnsongName3;
   /**
    * Launch the application.
    */
@@ -86,7 +94,7 @@ public class BeatswithAra
     
     try
     {
-      File file = new File("music1.mp3");
+      File file = new File("Happy.mp3");
       FileInputStream fis = new FileInputStream(file);
       BufferedInputStream bis = new BufferedInputStream(fis);
       try
@@ -156,42 +164,50 @@ public class BeatswithAra
     frame.getContentPane().add(textField);
     textField.setColumns(10);
     
-    btnEasy = new JButton("Easy");
-    btnEasy.setFont(new Font("Calibri", Font.BOLD, 30));
-    btnEasy.setBounds(808, 485, 143, 64);
-    frame.getContentPane().add(btnEasy);
+    
     
     btnLevel = new JButton("Level");
     btnLevel.addActionListener(new welcomeButtonListener());
-    
     btnLevel.setFont(new Font("Calibri", Font.BOLD, 30));
     btnLevel.setBounds(637, 485, 143, 64);
     frame.getContentPane().add(btnLevel);
     
-    btnMedium = new JButton("Medium");
+    
+    btnEasy = new JButton("Easy");
+    btnEasy.setFont(new Font("Calibri", Font.BOLD, 30));
+    btnEasy.setBounds(808, 485, 143, 64);
+    frame.getContentPane().add(btnEasy);
+    btnEasy.addActionListener(new welcomeButtonListener());
+    
+    btnMedium = new JButton("Normal");
     btnMedium.setFont(new Font("Calibri", Font.BOLD, 30));
     btnMedium.setBounds(808, 564, 143, 64);
     frame.getContentPane().add(btnMedium);
+    btnMedium.addActionListener(new welcomeButtonListener());
     
     btnHard = new JButton("Hard");
     btnHard.setFont(new Font("Calibri", Font.BOLD, 30));
     btnHard.setBounds(808, 645, 143, 64);
     frame.getContentPane().add(btnHard);
+    btnHard.addActionListener(new welcomeButtonListener());
     
-    JButton button_2 = new JButton("Easy");
-    button_2.setFont(new Font("Calibri", Font.BOLD, 30));
-    button_2.setBounds(974, 485, 143, 64);
-    frame.getContentPane().add(button_2);
+    btnsongName1 = new JButton("");
+    btnsongName1.setFont(new Font("Calibri", Font.BOLD, 30));
+    btnsongName1.setBounds(974, 485, 143, 64);
+    frame.getContentPane().add(btnsongName1);
+    btnsongName1.addActionListener(new welcomeButtonListener());
     
-    JButton button_3 = new JButton("Easy");
-    button_3.setFont(new Font("Calibri", Font.BOLD, 30));
-    button_3.setBounds(974, 564, 143, 64);
-    frame.getContentPane().add(button_3);
+    btnsongName2 = new JButton("");
+    btnsongName2.setFont(new Font("Calibri", Font.BOLD, 30));
+    btnsongName2.setBounds(974, 564, 143, 64);
+    frame.getContentPane().add(btnsongName2);
+    btnsongName2.addActionListener(new welcomeButtonListener());
     
-    JButton button_4 = new JButton("Easy");
-    button_4.setFont(new Font("Calibri", Font.BOLD, 30));
-    button_4.setBounds(974, 645, 143, 64);
-    frame.getContentPane().add(button_4);
+    btnsongName3 = new JButton("");
+    btnsongName3.setFont(new Font("Calibri", Font.BOLD, 30));
+    btnsongName3.setBounds(974, 645, 143, 64);
+    frame.getContentPane().add(btnsongName3);
+    btnsongName3.addActionListener(new welcomeButtonListener());
     
     
     /*
@@ -200,7 +216,9 @@ public class BeatswithAra
     btnEasy.setVisible(false);
     btnMedium.setVisible(false);
     btnHard.setVisible(false);
-    
+    btnsongName1.setVisible(false);
+    btnsongName2.setVisible(false);
+    btnsongName3.setVisible(false);
     
     
   }
@@ -215,8 +233,186 @@ public class BeatswithAra
         btnMedium.setVisible(true);
         btnHard.setVisible(true);
       }
+      else if(event.getSource() == btnEasy)
+      {
+        Database gamedb = new Database();
+        String songName = "";
+        try
+        {
+          gamedb.connect();
+        }
+        catch( Exception ex )
+        {
+          ex.printStackTrace();
+        }
+        songName = gamedb.getsongName("Easy", 1);
+        btnsongName1.setText(songName);
+        btnsongName1.setPreferredSize(fitText(songName));
+        btnsongName1.setBounds(new Rectangle(btnsongName1.getLocation(), btnsongName1.getPreferredSize()));
+        songName = gamedb.getsongName("Easy", 2);
+        btnsongName2.setText(songName);
+        btnsongName2.setPreferredSize(fitText(songName));
+        btnsongName2.setBounds(new Rectangle(btnsongName2.getLocation(), btnsongName2.getPreferredSize()));
+        songName = gamedb.getsongName("Easy", 3);
+        btnsongName3.setText(songName);
+        btnsongName3.setPreferredSize(fitText(songName));
+        btnsongName3.setBounds(new Rectangle(btnsongName3.getLocation(), btnsongName3.getPreferredSize()));
+        gamedb.disconnect();
+        
+        btnsongName1.setVisible(true);
+        btnsongName2.setVisible(true);
+        btnsongName3.setVisible(true);
+      }
+      else if(event.getSource() == btnMedium)
+      {
+        Database gamedb = new Database();
+        String songName = "";
+        try
+        {
+          gamedb.connect();
+        }
+        catch( Exception ex )
+        {
+          ex.printStackTrace();
+        }
+        songName = gamedb.getsongName("Normal", 1);
+        btnsongName1.setText(songName);
+        btnsongName1.setPreferredSize(fitText(songName));
+        btnsongName1.setBounds(new Rectangle(btnsongName1.getLocation(), btnsongName1.getPreferredSize()));
+        songName = gamedb.getsongName("Normal", 2);
+        btnsongName2.setText(songName);
+        btnsongName2.setPreferredSize(fitText(songName));
+        btnsongName2.setBounds(new Rectangle(btnsongName2.getLocation(), btnsongName2.getPreferredSize()));
+        songName = gamedb.getsongName("Normal", 3);
+        btnsongName3.setText(songName);
+        btnsongName3.setPreferredSize(fitText(songName));
+        btnsongName3.setBounds(new Rectangle(btnsongName3.getLocation(), btnsongName3.getPreferredSize()));
+        gamedb.disconnect();
+        
+        btnsongName1.setVisible(true);
+        btnsongName2.setVisible(true);
+        btnsongName3.setVisible(true);
+      }
+      else if(event.getSource() == btnHard)
+      {
+        Database gamedb = new Database();
+        String songName = "";
+        try
+        {
+          gamedb.connect();
+        }
+        catch( Exception ex )
+        {
+          ex.printStackTrace();
+        }
+        songName = gamedb.getsongName("Hard", 1);
+        btnsongName1.setText(songName);
+        btnsongName1.setPreferredSize(fitText(songName));
+        btnsongName1.setBounds(new Rectangle(btnsongName1.getLocation(), btnsongName1.getPreferredSize()));
+        songName = gamedb.getsongName("Hard", 2);
+        btnsongName2.setText(songName);
+        btnsongName2.setPreferredSize(fitText(songName));
+        btnsongName2.setBounds(new Rectangle(btnsongName2.getLocation(), btnsongName2.getPreferredSize()));
+        songName = gamedb.getsongName("Hard", 3);
+        btnsongName3.setText(songName);
+        btnsongName3.setPreferredSize(fitText(songName));
+        btnsongName3.setBounds(new Rectangle(btnsongName3.getLocation(), btnsongName3.getPreferredSize()));
+        gamedb.disconnect();
+        
+        btnsongName1.setVisible(true);
+        btnsongName2.setVisible(true);
+        btnsongName3.setVisible(true);
+      }
+      else if(event.getSource() == btnsongName1)
+      {
+        Database gamedb = new Database();
+        try
+        {
+          gamedb.connect();
+        }
+        catch( Exception ex )
+        {
+          ex.printStackTrace();
+        }
+        String username = textField.getText();
+        if(!gamedb.userexist(username))
+        {
+          nextID++;
+          gamedb.adduser(nextID, username);
+          Songselect songFrame = new Songselect(textField.getText());
+          songFrame.setSize(450, 500);
+          songFrame.setVisible(true);
+          out.printf("Hello %s, Welcome to Beats with Ara! \n",
+              textField.getText());
+        }
+        gamedb.disconnect();
+        
+      }
+      else if(event.getSource() == btnsongName2)
+      {
+        Database gamedb = new Database();
+        try
+        {
+          gamedb.connect();
+        }
+        catch( Exception ex )
+        {
+          ex.printStackTrace();
+        }
+        String username = textField.getText();
+        if(!gamedb.userexist(username))
+        {
+          nextID++;
+          gamedb.adduser(nextID, username);
+          Songselect songFrame = new Songselect(textField.getText());
+          songFrame.setSize(450, 500);
+          songFrame.setVisible(true);
+          out.printf("Hello %s, Welcome to Beats with Ara! \n",
+              textField.getText());
+        }
+        gamedb.disconnect();
+      }
+      else if(event.getSource() == btnsongName3)
+      {
+        Database gamedb = new Database();
+        try
+        {
+          gamedb.connect();
+        }
+        catch( Exception ex )
+        {
+          ex.printStackTrace();
+        }
+        String username = textField.getText();
+        if(!gamedb.userexist(username))
+        {
+          nextID++;
+          gamedb.adduser(nextID, username);
+          Songselect songFrame = new Songselect(textField.getText());
+          songFrame.setSize(450, 500);
+          songFrame.setVisible(true);
+          out.printf("Hello %s, Welcome to Beats with Ara! \n",
+              textField.getText());
+        }
+        gamedb.disconnect();
+      }
     }
   }
+  
+  
+  public Dimension fitText(String textfield) { 
+    Font defaultFont = new Font("Calibri", Font.BOLD, 30);
+    Canvas canvas = new Canvas();
+    FontMetrics fm = canvas.getFontMetrics(defaultFont);
+    int width = fm.stringWidth(textfield);
+    int height = fm.getHeight();
+    System.out.println(width + " " + height); 
+    Dimension resizeDim = new Dimension(width+40,height+10);
+    return resizeDim;
+    
+  }
+  
+  
   private class SwingAction extends AbstractAction {
     public SwingAction() {
       putValue(NAME, "SwingAction");
@@ -225,4 +421,5 @@ public class BeatswithAra
     public void actionPerformed(ActionEvent e) {
     }
   }
+  
 }
