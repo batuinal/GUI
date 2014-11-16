@@ -18,6 +18,7 @@ public class Createtable
     }
     
     gamedb.createtable();
+    gamedb.createSongData();
     
     gamedb.disconnect();
   }
