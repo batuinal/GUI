@@ -8,7 +8,6 @@ public class Keyboard extends JFrame implements KeyListener {
 	JLabel keyLabel = new JLabel("Press fire button"); 
 		
 	Keyboard() {
-		
 		keyText.addKeyListener(this); 
 		setSize(400,400);
 		setVisible(true); 
@@ -31,9 +30,11 @@ public class Keyboard extends JFrame implements KeyListener {
 		// hook up 8 keys 
 		int keyCode = e.getKeyCode(); 
 		
-		// q,w,a,s block
+		// Q, W, A, S block
 		if (keyCode == KeyEvent.VK_Q){
 			keyLabel.setText("Pressed Q"); 
+			// 1. Need to check if arrow is set for this square 
+			// 2. Need to update score accordingly. 
 		}
 		else if (keyCode == KeyEvent.VK_W){
 			keyLabel.setText("Pressed W");
@@ -45,7 +46,7 @@ public class Keyboard extends JFrame implements KeyListener {
 			keyLabel.setText("Pressed S");
 		}
 		
-		//i,o,k,l block
+		// I, O, K, L block
 		if (keyCode == KeyEvent.VK_I){
 			keyLabel.setText("Pressed I"); 
 		}
@@ -58,8 +59,6 @@ public class Keyboard extends JFrame implements KeyListener {
 		else if (keyCode == KeyEvent.VK_L){
 			keyLabel.setText("Pressed L");
 		}
-		
-		
 	}
 
 	@Override
