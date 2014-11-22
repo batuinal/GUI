@@ -8,11 +8,13 @@ public class execute
     gamer = new Game("Happy.txt");
     musicplayer player = new musicplayer();
     Animation animate = new Animation();
+    ProgressBar progress = new ProgressBar();
     
-    Thread t1, t2, t3;
+    Thread t1, t2, t3, t4;
     t1 = new Thread(gamer);
     t2 = new Thread(player);
     t3 = new Thread(animate);
+    t4 = new Thread(progress);
     
     t1.start();
     try
@@ -28,5 +30,6 @@ public class execute
     System.out.println("start thread 2");
     t3.start();
     System.out.println("start thread 3");
+    t4.start();
   }
 }

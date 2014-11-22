@@ -11,7 +11,9 @@ import java.net.URL;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.Timer;
@@ -28,6 +30,7 @@ import javax.swing.SwingConstants;
 import org.eclipse.wb.swing.FocusTraversalOnArray;
 
 import javax.swing.JLayeredPane;
+import javax.swing.JProgressBar;
 
 public class Game extends JFrame implements Runnable
 {
@@ -36,6 +39,8 @@ public class Game extends JFrame implements Runnable
   private String songName;
   
   public static Vector<Integer> timeVector;
+  public static JProgressBar progressBar;
+  public static int lastTimestamp;
   /**
    * JLabel for the arrows
    * 
@@ -113,13 +118,11 @@ public class Game extends JFrame implements Runnable
   public static JLabel leftyellowsmall4;
   public static JLabel leftyellowmedium4;
   public static JLabel leftyellowlarge4;
+  
+  
+  
+  
   private static JLabel Grids;
-  private JLabel label;
-  private JLabel label_1;
-  private JLabel label_2;
-  private JLabel label_3;
-  private JLabel label_4;
-  private JLabel label_5;
   
   
   public static void updateArrow(boolean iseven){
@@ -153,6 +156,7 @@ public class Game extends JFrame implements Runnable
        // readcnt++;
         
       }
+      lastTimestamp = timeVector.lastElement();
       System.out.println("NumofTime = " + timeVector.size());
     } catch(IOException ex) {
        ex.printStackTrace();
@@ -644,6 +648,15 @@ public class Game extends JFrame implements Runnable
     Grids.setBounds(355, 88, 1194, 864);
     contentPane.add(Grids);
     Grids.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\Grids.png"));
+    
+    progressBar = new JProgressBar();
+    progressBar.setForeground(Color.PINK);
+    progressBar.setFont(new Font("Kristen ITC", Font.BOLD, 20));
+    progressBar.setStringPainted(true);
+    Border border = BorderFactory.createTitledBorder("Game Progress...");
+    progressBar.setBorder(border);
+    progressBar.setBounds(437, 940, 1033, 51);
+    contentPane.add(progressBar);
     
     
     

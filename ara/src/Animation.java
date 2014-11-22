@@ -14,7 +14,7 @@ import javax.swing.Timer;
 public class Animation implements Runnable
 {
   private static Timer timer;
-  private static int nextTimeStamp;
+  public static int nextTimeStamp;
   private static long startTime;
   private static int arrowcnt;
   
@@ -36,7 +36,7 @@ public class Animation implements Runnable
       //arrowSize = arrow.getSize();
       public void actionPerformed(ActionEvent evt) {
         gridNum = arrow.getgrid();
-        System.out.println(gridNum);
+        //System.out.println(gridNum);
         if(lastDir == "right"){
           if(lastColor == "green"){
             if(lastgridNum == 0){
@@ -365,6 +365,10 @@ public class Animation implements Runnable
       }
     };
     
+    
+    
+    
+    
     startTime = System.currentTimeMillis();
     arrowcnt = 0;
     System.out.println("Animation Start!");
@@ -376,7 +380,7 @@ public class Animation implements Runnable
         arrow.randomGenerator();
       }
       
-      System.out.println(arrow.getColor());
+      //System.out.println(arrow.getColor());
       
       nextTimeStamp = Game.timeVector.get(0); // get first element 
       Game.timeVector.removeElementAt(0); // remove element off vector 
