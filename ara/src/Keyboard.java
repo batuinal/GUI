@@ -6,6 +6,7 @@ public class Keyboard extends JFrame implements KeyListener {
 	
 	JTextField keyText = new JTextField(80); 
 	JLabel keyLabel = new JLabel("Press fire button"); 
+	int score; 
 		
 	Keyboard() {
 		keyText.addKeyListener(this); 
@@ -35,6 +36,9 @@ public class Keyboard extends JFrame implements KeyListener {
 			keyLabel.setText("Pressed Q"); 
 			// 1. Need to check if arrow is set for this square 
 			// 2. Need to update score accordingly. 
+			
+			// if touch is correct
+				score++; // update score
 		}
 		else if (keyCode == KeyEvent.VK_W){
 			keyLabel.setText("Pressed W");
