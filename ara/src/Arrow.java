@@ -4,6 +4,7 @@ public class Arrow
 {
   private String color;
   private int grid;
+  private int gridNum;
   private String dir;
   private Random rand = new Random();
 
@@ -42,6 +43,7 @@ public class Arrow
       dir = "right";
     }
     grid = i;
+    gridNum = grid + k * 4;
   }
 
   
@@ -55,5 +57,9 @@ public class Arrow
   
   public String getDir(){
     return dir;
+  }
+  
+  public int getgridNum(){
+    return 0;
   }
 }

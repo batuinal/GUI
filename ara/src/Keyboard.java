@@ -2,23 +2,16 @@ import java.awt.*;
 import javax.swing.*; 
 import java.awt.event.*; 
 
-public class Keyboard extends JFrame implements KeyListener {
+
+public class Keyboard extends JFrame implements KeyListener{
 	
-	JTextField keyText = new JTextField(80); 
-	JLabel keyLabel = new JLabel("Press fire button"); 
-	int score; 
+	//JTextField keyText = new JTextField(80); 
+	//JLabel keyLabel = new JLabel("Press fire button"); 
 		
+  private int gridNum;
+  
 	Keyboard() {
-		keyText.addKeyListener(this); 
-		setSize(400,400);
-		setVisible(true); 
-		setLocationRelativeTo(null); 
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
-		
-		BorderLayout layout = new BorderLayout(); 
-		setLayout (layout); 
-		add (keyLabel, BorderLayout.NORTH); 
-		add (keyText, BorderLayout.CENTER); 
+		Game.scoreLabel.addKeyListener(this); 
 	}	
 	
 	@Override
@@ -33,36 +26,39 @@ public class Keyboard extends JFrame implements KeyListener {
 		
 		// Q, W, A, S block
 		if (keyCode == KeyEvent.VK_Q){
-			keyLabel.setText("Pressed Q"); 
-			// 1. Need to check if arrow is set for this square 
-			// 2. Need to update score accordingly. 
-			
-			// if touch is correct
-				score++; // update score
+		  gridNum = 0;
 		}
 		else if (keyCode == KeyEvent.VK_W){
-			keyLabel.setText("Pressed W");
+		  gridNum = 1;
 		}
 		else if (keyCode == KeyEvent.VK_A){
-			keyLabel.setText("Pressed A");
+		  gridNum = 2;
 		}
 		else if (keyCode == KeyEvent.VK_S){
-			keyLabel.setText("Pressed S");
+		  gridNum = 3;
 		}
 		
 		// I, O, K, L block
 		if (keyCode == KeyEvent.VK_I){
-			keyLabel.setText("Pressed I"); 
+		  gridNum = 4;
 		}
 		else if (keyCode == KeyEvent.VK_O){
-			keyLabel.setText("Pressed O");
+		  gridNum = 5;
 		}
 		else if (keyCode == KeyEvent.VK_K){
-			keyLabel.setText("Pressed K");
+		  gridNum = 6;
 		}
 		else if (keyCode == KeyEvent.VK_L){
-			keyLabel.setText("Pressed L");
+		  gridNum = 7;
 		}
+		/*
+		if(gridNum == Animation.arrow.getgridNum())
+		{
+		  Game.score += 30;
+		}
+		*/
+		System.out.println(gridNum);
+		
 	}
 
 	@Override
@@ -71,7 +67,7 @@ public class Keyboard extends JFrame implements KeyListener {
 		
 	}
 	
-	public static void main(String[] args){
+	public static void main(){
 		Keyboard keyboard = new Keyboard(); 
 	}
 

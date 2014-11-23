@@ -30,5 +30,6 @@ public class ProgressBar implements Runnable
     progressTimer = new Timer(delay, progressLis);
     progressTimer.start();
     
+    
   }
 }
