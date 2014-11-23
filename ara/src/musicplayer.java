@@ -10,12 +10,17 @@ import javazoom.jl.player.Player;
 public class musicplayer implements Runnable
 {
   private static Player player;
+  private static String songName;
+  
+  public musicplayer(String str){
+    songName = str;
+  }
   
   public void run()
   {
     try
     {
-      File file = new File("Happy.mp3");
+      File file = new File(songName + ".mp3");
       FileInputStream fis = new FileInputStream(file);
       BufferedInputStream bis = new BufferedInputStream(fis);
       try
@@ -31,5 +36,10 @@ public class musicplayer implements Runnable
     {
        ex.printStackTrace();
     }
+  }
+  
+  public void stop()
+  {
+    player.close();
   }
 }

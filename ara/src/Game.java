@@ -77,6 +77,9 @@ public class Game extends JFrame implements Runnable, KeyListener
 
   private static JLabel Grids;
   public static JLabel scoreLabel;
+  private JLabel titleLabel;
+  private JLabel backgroundLabel;
+  private JButton btnNewButton;
 
 
   public static void updateArrow(boolean iseven)
@@ -92,17 +95,21 @@ public class Game extends JFrame implements Runnable, KeyListener
    */
   public void run()
   {
+    titleLabel.setText(songName);
+    titleLabel.setPreferredSize(fitText(songName));
+    titleLabel.setBounds(new Rectangle(titleLabel.getLocation(), titleLabel.getPreferredSize()));
     System.out.println("Initialize");
     // Game frame = new Game("Happy.txt");
     execute.gamer.setExtendedState(JFrame.MAXIMIZED_BOTH);
     execute.gamer.setVisible(true);
     System.out.println("Frame Create");
 
+    score = 0;
     timeVector = new Vector<Integer>(); // vector of integers
     try
     {
       // Read in the file
-      BufferedReader reader = new BufferedReader(new FileReader(songName));
+      BufferedReader reader = new BufferedReader(new FileReader(songName + ".txt"));
       // Add all timestamps to a vector
       String line = null;
       while( (line = reader.readLine()) != null )
@@ -339,9 +346,37 @@ public class Game extends JFrame implements Runnable, KeyListener
     contentPane.add(progressBar);
 
     scoreLabel = new JLabel("");
+    scoreLabel.setForeground(Color.WHITE);
     scoreLabel.setFont(new Font("Showcard Gothic", Font.BOLD, 99));
     scoreLabel.setBounds(1614, 36, 218, 183);
     contentPane.add(scoreLabel);
+    
+    titleLabel = new JLabel("");
+    titleLabel.setFont(new Font("Algerian", Font.PLAIN, 60));
+    titleLabel.setBounds(759, 26, 517, 113);
+    contentPane.add(titleLabel);
+    
+    btnNewButton = new JButton("New button");
+    btnNewButton.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        execute.animate.stop();
+        execute.player.stop();
+        execute.progress.stop();
+        execute.scoreboard.stop();
+        execute.gamer.dispose();
+        Starter.beat.run();
+        
+      }
+    });
+    btnNewButton.setBounds(45, 785, 150, 150);
+    contentPane.add(btnNewButton);
+    
+    backgroundLabel = new JLabel("");
+    backgroundLabel.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\background.png"));
+    backgroundLabel.setBounds(0, 0, 1920, 1080);
+    contentPane.add(backgroundLabel);
+    
+    
 
 
     score = 0;
@@ -416,5 +451,17 @@ public class Game extends JFrame implements Runnable, KeyListener
   {
     // not doing anything
 
+  }
+  
+  public Dimension fitText(String textfield) { 
+    Font defaultFont = new Font("Algerian", Font.PLAIN, 60);
+    Canvas canvas = new Canvas();
+    FontMetrics fm = canvas.getFontMetrics(defaultFont);
+    int width = fm.stringWidth(textfield);
+    int height = fm.getHeight();
+    System.out.println(width + " " + height); 
+    Dimension resizeDim = new Dimension(width+40,height+10);
+    return resizeDim;
+    
   }
 }

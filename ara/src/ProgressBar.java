@@ -16,6 +16,7 @@ public class ProgressBar implements Runnable
   
   ActionListener progressLis = new ActionListener() {
     public void actionPerformed(ActionEvent evt) {
+      //System.out.println(nextTimeStamp);
       nextTimeStamp = Animation.nextTimeStamp;
       
       progress = (nextTimeStamp/lastTimestamp) * 100;
@@ -31,5 +32,10 @@ public class ProgressBar implements Runnable
     progressTimer.start();
     
     
+  }
+  
+  public void stop()
+  {
+    progressTimer.stop();
   }
 }
