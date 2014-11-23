@@ -50,15 +50,15 @@ import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.Player;
 
 
-public class BeatswithAra
+public class BeatswithAra extends JFrame implements Runnable
 {
-
-  private JFrame frame;
   private JTextField textField;
   private static int nextID = 0;
   private final Action action = new SwingAction();
   private static Player player;
-  
+  private static execute exe;
+  private static musicplayer mainplayer;
+  private Thread playerThread;
   
   /*
    * Buttons on the welcome page
@@ -74,56 +74,16 @@ public class BeatswithAra
   /**
    * Launch the application.
    */
-  public static void main(String[] args)
+  public void run()
   {
-    EventQueue.invokeLater(new Runnable()
-    {
-      public void run()
-      {
-        try
-        {
-          BeatswithAra window = new BeatswithAra();
-          window.frame.setVisible(true);
-        }
-        catch( Exception e )
-        {
-          e.printStackTrace();
-        }
-      }
-    });
-    
-    try
-    {
-      File file = new File("Happy.mp3");
-      FileInputStream fis = new FileInputStream(file);
-      BufferedInputStream bis = new BufferedInputStream(fis);
-      try
-      {
-        player = new Player(bis);
-        player.play();
-        
-      } catch(JavaLayerException ex1)
-      {
-        ex1.printStackTrace();
-      }
-    } catch(IOException ex)
-    {
-       ex.printStackTrace();
-    }
+    Starter.beat.setExtendedState(JFrame.MAXIMIZED_BOTH);
+    Starter.beat.setVisible(true);
+    mainplayer = new musicplayer("sakula");
+    playerThread = new Thread(mainplayer);
+    playerThread.start();
   }
 
-  /**
-   * Create the application.
-   */
   public BeatswithAra()
-  {
-    initialize();
-  }
-
-  /**
-   * Initialize the contents of the frame.
-   */
-  private void initialize()
   {
     Database gamedb = new Database();
     try
@@ -136,13 +96,10 @@ public class BeatswithAra
     }
     nextID = gamedb.currentid();
     gamedb.disconnect();
+    setBounds(100, 100, 1920, 1080);
+    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    getContentPane().setLayout(null);
     
-    
-    
-    frame = new JFrame();
-    frame.setBounds(100, 100, 1920, 1080);
-    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    frame.getContentPane().setLayout(null);
     
     JLabel lblBeatsWithAra = new JLabel("Beats With Ara");
     lblBeatsWithAra.setBounds(359, 93, 978, 146);
@@ -150,18 +107,18 @@ public class BeatswithAra
     lblBeatsWithAra.setForeground(Color.PINK);
     lblBeatsWithAra.setVerticalAlignment(SwingConstants.TOP);
     lblBeatsWithAra.setHorizontalAlignment(SwingConstants.CENTER);
-    frame.getContentPane().add(lblBeatsWithAra);
+    getContentPane().add(lblBeatsWithAra);
     
     JLabel lblUsername = new JLabel("Username:");
     lblUsername.setBounds(624, 304, 122, 36);
     lblUsername.setAlignmentY(Component.BOTTOM_ALIGNMENT);
     lblUsername.setFont(new Font("Arial Narrow", Font.PLAIN, 30));
-    frame.getContentPane().add(lblUsername);
+    getContentPane().add(lblUsername);
     
     textField = new JTextField();
     textField.setFont(new Font("Times New Roman", Font.PLAIN, 20));
     textField.setBounds(760, 308, 243, 36);
-    frame.getContentPane().add(textField);
+    getContentPane().add(textField);
     textField.setColumns(10);
     
     
@@ -170,43 +127,43 @@ public class BeatswithAra
     btnLevel.addActionListener(new welcomeButtonListener());
     btnLevel.setFont(new Font("Calibri", Font.BOLD, 30));
     btnLevel.setBounds(637, 485, 143, 64);
-    frame.getContentPane().add(btnLevel);
+    getContentPane().add(btnLevel);
     
     
     btnEasy = new JButton("Easy");
     btnEasy.setFont(new Font("Calibri", Font.BOLD, 30));
     btnEasy.setBounds(808, 485, 143, 64);
-    frame.getContentPane().add(btnEasy);
+    getContentPane().add(btnEasy);
     btnEasy.addActionListener(new welcomeButtonListener());
     
     btnMedium = new JButton("Normal");
     btnMedium.setFont(new Font("Calibri", Font.BOLD, 30));
     btnMedium.setBounds(808, 564, 143, 64);
-    frame.getContentPane().add(btnMedium);
+    getContentPane().add(btnMedium);
     btnMedium.addActionListener(new welcomeButtonListener());
     
     btnHard = new JButton("Hard");
     btnHard.setFont(new Font("Calibri", Font.BOLD, 30));
     btnHard.setBounds(808, 645, 143, 64);
-    frame.getContentPane().add(btnHard);
+    getContentPane().add(btnHard);
     btnHard.addActionListener(new welcomeButtonListener());
     
     btnsongName1 = new JButton("");
     btnsongName1.setFont(new Font("Calibri", Font.BOLD, 30));
     btnsongName1.setBounds(974, 485, 143, 64);
-    frame.getContentPane().add(btnsongName1);
+    getContentPane().add(btnsongName1);
     btnsongName1.addActionListener(new welcomeButtonListener());
     
     btnsongName2 = new JButton("");
     btnsongName2.setFont(new Font("Calibri", Font.BOLD, 30));
     btnsongName2.setBounds(974, 564, 143, 64);
-    frame.getContentPane().add(btnsongName2);
+    getContentPane().add(btnsongName2);
     btnsongName2.addActionListener(new welcomeButtonListener());
     
     btnsongName3 = new JButton("");
     btnsongName3.setFont(new Font("Calibri", Font.BOLD, 30));
     btnsongName3.setBounds(974, 645, 143, 64);
-    frame.getContentPane().add(btnsongName3);
+    getContentPane().add(btnsongName3);
     btnsongName3.addActionListener(new welcomeButtonListener());
     
     
@@ -347,6 +304,12 @@ public class BeatswithAra
         }
         gamedb.disconnect();
         
+        exe = new execute(btnsongName1.getText());
+        exe.run();
+        playerThread.stop();
+        dispose();
+        System.out.println("open exe");
+        
       }
       else if(event.getSource() == btnsongName2)
       {
@@ -371,6 +334,11 @@ public class BeatswithAra
               textField.getText());
         }
         gamedb.disconnect();
+        exe = new execute(btnsongName2.getText());
+        exe.run();
+        playerThread.stop();
+        dispose();
+        System.out.println("open exe");
       }
       else if(event.getSource() == btnsongName3)
       {
@@ -395,8 +363,14 @@ public class BeatswithAra
               textField.getText());
         }
         gamedb.disconnect();
+        exe = new execute(btnsongName3.getText());
+        exe.run();
+        playerThread.stop();
+        dispose();
+        System.out.println("open exe");
       }
     }
+    
   }
   
   

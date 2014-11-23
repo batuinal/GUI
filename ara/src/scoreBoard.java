@@ -21,5 +21,10 @@ public class scoreBoard implements Runnable
     scoreTimer = new Timer(delay, scoreLis);
     scoreTimer.start();
   }
+  
+  public void stop()
+  {
+    scoreTimer.stop();
+  }
 }
 

@@ -2,14 +2,27 @@
 public class execute
 {
   public static Game gamer;
+  public static musicplayer player;
+  public static Animation animate;
+  public static ProgressBar progress;
+  public static scoreBoard scoreboard;
   public static Thread t1, t2, t3, t4, t5, t6;
-  public static void main(String[] args)
+  private static String songName;
+  
+  public execute(String str){
+    songName = str;
+  }
+  
+  
+  public void run()
+  //public static void main(String[] agrc)
   {
-    gamer = new Game("Happy.txt");
-    musicplayer player = new musicplayer();
-    Animation animate = new Animation();
-    ProgressBar progress = new ProgressBar();
-    scoreBoard scoreboard = new scoreBoard();
+    //songName = "We Are Family";
+    gamer = new Game(songName);
+    player = new musicplayer(songName);
+    animate = new Animation();
+    progress = new ProgressBar();
+    scoreboard = new scoreBoard();
     
     t1 = new Thread(gamer); // frame
     t2 = new Thread(player);// music

@@ -1,6 +1,11 @@
-package ara;
-
 import java.awt.*; 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 public class Score extends JFrame {
 	
@@ -48,7 +53,7 @@ public class Score extends JFrame {
                 //Execute when button is pressed
                 System.out.println("Quit the game");
                 setVisible(false); 
-                dispose(); 
+                System.exit(0);
             }
         }); 
 		scoreLabel.setForeground(Color.WHITE);
