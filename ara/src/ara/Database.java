@@ -112,8 +112,8 @@ public class Database
   {
     String[] songName = new String[9];
     songName[0] = "Happy";
-    songName[1] = "Let It Go";
-    songName[2] = "VOCALOID"; 
+    songName[1] = "We Are Family";
+    songName[2] = "Winter Wonderland"; 
     songName[3] = "Happy";
     songName[4] = "Let It Go";
     songName[5] = "VOCALOID";

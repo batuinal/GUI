@@ -105,6 +105,7 @@ public class Game extends JFrame implements Runnable, KeyListener
     System.out.println("Frame Create");
 
     score = 0;
+    int readcounter = 0;
     timeVector = new Vector<Integer>(); // vector of integers
     try
     {
@@ -114,9 +115,12 @@ public class Game extends JFrame implements Runnable, KeyListener
       String line = null;
       while( (line = reader.readLine()) != null )
       {
-        Integer currTime = Integer.parseInt(line); // convert string to integer
+        if(readcounter % 3 == 0){
+          Integer currTime = Integer.parseInt(line); // convert string to integer
                                                    // // "1234" - 1234
-        timeVector.add(currTime);
+          timeVector.add(currTime);
+        }
+        readcounter ++;
       }
       lastTimestamp = timeVector.lastElement();
       System.out.println("NumofTime = " + timeVector.size());
@@ -159,28 +163,28 @@ public class Game extends JFrame implements Runnable, KeyListener
     rightgreen1 = new JLabel("");
     rightgreen1.setBounds(497, 191, 333, 248);
     rightgreen1.setIcon(new ImageIcon(
-        "D:\\481 Project\\GUI\\ara\\rightgreen.png"));
+        "D:\\481 Project\\GUI\\ara\\rightgreen.gif"));
     rightgreen1.setVisible(false);
     contentPane.add(rightgreen1);
 
     rightgreen2 = new JLabel("");
     rightgreen2.setBounds(1069, 191, 333, 248);
     rightgreen2.setIcon(new ImageIcon(
-        "D:\\481 Project\\GUI\\ara\\rightgreen.png"));
+        "D:\\481 Project\\GUI\\ara\\rightgreen.gif"));
     rightgreen2.setVisible(false);
     contentPane.add(rightgreen2);
 
     rightgreen3 = new JLabel("");
     rightgreen3.setBounds(506, 578, 324, 248);
     rightgreen3.setIcon(new ImageIcon(
-        "D:\\481 Project\\GUI\\ara\\rightgreen.png"));
+        "D:\\481 Project\\GUI\\ara\\rightgreen.gif"));
     rightgreen3.setVisible(false);
     contentPane.add(rightgreen3);
 
     rightgreen4 = new JLabel("");
     rightgreen4.setBounds(1062, 578, 324, 248);
     rightgreen4.setIcon(new ImageIcon(
-        "D:\\481 Project\\GUI\\ara\\rightgreen.png"));
+        "D:\\481 Project\\GUI\\ara\\rightgreen.gif"));
     rightgreen4.setVisible(false);
     contentPane.add(rightgreen4);
 
@@ -190,28 +194,28 @@ public class Game extends JFrame implements Runnable, KeyListener
     leftgreen1 = new JLabel("");
     leftgreen1.setBounds(497, 191, 333, 248);
     leftgreen1
-        .setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\leftgreen.png"));
+        .setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\leftgreen.gif"));
     leftgreen1.setVisible(false);
     contentPane.add(leftgreen1);
 
     leftgreen2 = new JLabel("");
     leftgreen2.setBounds(1069, 191, 333, 248);
     leftgreen2
-        .setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\leftgreen.png"));
+        .setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\leftgreen.gif"));
     leftgreen2.setVisible(false);
     contentPane.add(leftgreen2);
 
     leftgreen3 = new JLabel("");
     leftgreen3.setBounds(506, 578, 324, 248);
     leftgreen3
-        .setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\leftgreen.png"));
+        .setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\leftgreen.gif"));
     leftgreen3.setVisible(false);
     contentPane.add(leftgreen3);
 
     leftgreen4 = new JLabel("");
     leftgreen4.setBounds(1062, 578, 324, 248);
     leftgreen4
-        .setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\leftgreen.png"));
+        .setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\leftgreen.gif"));
     leftgreen4.setVisible(false);
     contentPane.add(leftgreen4);
     /************************************************************************************************************************/
@@ -221,25 +225,25 @@ public class Game extends JFrame implements Runnable, KeyListener
 
     rightred1 = new JLabel("");
     rightred1.setBounds(497, 191, 333, 248);
-    rightred1.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\rightred.png"));
+    rightred1.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\rightred.gif"));
     rightred1.setVisible(false);
     contentPane.add(rightred1);
 
     rightred2 = new JLabel("");
     rightred2.setBounds(1069, 191, 333, 248);
-    rightred2.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\rightred.png"));
+    rightred2.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\rightred.gif"));
     rightred2.setVisible(false);
     contentPane.add(rightred2);
 
     rightred3 = new JLabel("");
     rightred3.setBounds(506, 578, 324, 248);
-    rightred3.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\rightred.png"));
+    rightred3.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\rightred.gif"));
     rightred3.setVisible(false);
     contentPane.add(rightred3);
 
     rightred4 = new JLabel("");
     rightred4.setBounds(1062, 578, 324, 248);
-    rightred4.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\rightred.png"));
+    rightred4.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\rightred.gif"));
     rightred4.setVisible(false);
     contentPane.add(rightred4);
 
@@ -247,25 +251,25 @@ public class Game extends JFrame implements Runnable, KeyListener
 
     leftred1 = new JLabel("");
     leftred1.setBounds(497, 191, 333, 248);
-    leftred1.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\leftred.png"));
+    leftred1.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\leftred.gif"));
     leftred1.setVisible(false);
     contentPane.add(leftred1);
 
     leftred2 = new JLabel("");
     leftred2.setBounds(1069, 191, 333, 248);
-    leftred2.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\leftred.png"));
+    leftred2.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\leftred.gif"));
     leftred2.setVisible(false);
     contentPane.add(leftred2);
 
     leftred3 = new JLabel("");
     leftred3.setBounds(506, 578, 324, 248);
-    leftred3.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\leftred.png"));
+    leftred3.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\leftred.gif"));
     leftred3.setVisible(false);
     contentPane.add(leftred3);
 
     leftred4 = new JLabel("");
     leftred4.setBounds(1062, 578, 324, 248);
-    leftred4.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\leftred.png"));
+    leftred4.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\leftred.gif"));
     leftred4.setVisible(false);
     contentPane.add(leftred4);
     /****************************************************************************************************************************************/
@@ -276,28 +280,28 @@ public class Game extends JFrame implements Runnable, KeyListener
     rightyellow1 = new JLabel("");
     rightyellow1.setBounds(497, 191, 333, 248);
     rightyellow1.setIcon(new ImageIcon(
-        "D:\\481 Project\\GUI\\ara\\rightyellow.png"));
+        "D:\\481 Project\\GUI\\ara\\rightyellow.gif"));
     rightyellow1.setVisible(false);
     contentPane.add(rightyellow1);
 
     rightyellow2 = new JLabel("");
     rightyellow2.setBounds(1069, 191, 333, 248);
     rightyellow2.setIcon(new ImageIcon(
-        "D:\\481 Project\\GUI\\ara\\rightyellow.png"));
+        "D:\\481 Project\\GUI\\ara\\rightyellow.gif"));
     rightyellow2.setVisible(false);
     contentPane.add(rightyellow2);
 
     rightyellow3 = new JLabel("");
     rightyellow3.setBounds(506, 578, 324, 248);
     rightyellow3.setIcon(new ImageIcon(
-        "D:\\481 Project\\GUI\\ara\\rightyellow.png"));
+        "D:\\481 Project\\GUI\\ara\\rightyellow.gif"));
     rightyellow3.setVisible(false);
     contentPane.add(rightyellow3);
 
     rightyellow4 = new JLabel("");
     rightyellow4.setBounds(1062, 578, 324, 248);
     rightyellow4.setIcon(new ImageIcon(
-        "D:\\481 Project\\GUI\\ara\\rightyellow.png"));
+        "D:\\481 Project\\GUI\\ara\\rightyellow.gif"));
     rightyellow4.setVisible(false);
     contentPane.add(rightyellow4);
     /**************************************************************** Left ********************************************************************/
@@ -305,28 +309,28 @@ public class Game extends JFrame implements Runnable, KeyListener
     leftyellow1 = new JLabel("");
     leftyellow1.setBounds(497, 191, 333, 248);
     leftyellow1.setIcon(new ImageIcon(
-        "D:\\481 Project\\GUI\\ara\\leftyellow.png"));
+        "D:\\481 Project\\GUI\\ara\\leftyellow.gif"));
     leftyellow1.setVisible(false);
     contentPane.add(leftyellow1);
 
     leftyellow2 = new JLabel("");
     leftyellow2.setBounds(1069, 191, 333, 248);
     leftyellow2.setIcon(new ImageIcon(
-        "D:\\481 Project\\GUI\\ara\\leftyellow.png"));
+        "D:\\481 Project\\GUI\\ara\\leftyellow.gif"));
     leftyellow2.setVisible(false);
     contentPane.add(leftyellow2);
 
     leftyellow3 = new JLabel("");
     leftyellow3.setBounds(506, 578, 324, 248);
     leftyellow3.setIcon(new ImageIcon(
-        "D:\\481 Project\\GUI\\ara\\leftyellow.png"));
+        "D:\\481 Project\\GUI\\ara\\leftyellow.gif"));
     leftyellow3.setVisible(false);
     contentPane.add(leftyellow3);
 
     leftyellow4 = new JLabel("");
     leftyellow4.setBounds(1062, 578, 324, 248);
     leftyellow4.setIcon(new ImageIcon(
-        "D:\\481 Project\\GUI\\ara\\leftyellow.png"));
+        "D:\\481 Project\\GUI\\ara\\leftyellow.gif"));
     leftyellow4.setVisible(false);
     contentPane.add(leftyellow4);
     /****************************************************************************************************************************************/
@@ -395,6 +399,7 @@ public class Game extends JFrame implements Runnable, KeyListener
   public void keyPressed(KeyEvent e)
   {
     // hook up 8 keys
+    System.out.println("keyPressed" + gridNum);
     int keyCode = e.getKeyCode();
 
     // Q, W, A, S block
@@ -437,12 +442,12 @@ public class Game extends JFrame implements Runnable, KeyListener
       gridNum = -1;
     }
 
-    if( gridNum == Animation.arrow.getgridNum() )
+    if( gridNum == Animation.girdNum_HoldOn )
     {
       Game.score += 5;
     }
 
-    System.out.println(gridNum);
+    System.out.println(gridNum + "<<<<<<<<<<<<" +Animation.girdNum_HoldOn);
 
   }
 
