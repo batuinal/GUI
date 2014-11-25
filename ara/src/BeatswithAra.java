@@ -90,6 +90,7 @@ public class BeatswithAra extends JFrame implements Runnable
 
   public BeatswithAra()
   {
+    username = "";
     Database gamedb = new Database();
     try
     {

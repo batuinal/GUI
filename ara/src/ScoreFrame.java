@@ -30,6 +30,7 @@ public class ScoreFrame extends JFrame {
 
   // Score Frame 
   ScoreFrame(int sco, String sn) {
+    getContentPane().setBackground(Color.PINK);
     //setAutoRequestFocus(false);
     // Game Background
     
@@ -47,8 +48,8 @@ public class ScoreFrame extends JFrame {
     
     getContentPane().setLayout(null);
     keyLabel.setForeground(Color.WHITE);
-    keyLabel.setFont(new Font("Helvetica", Font.BOLD, 32));
-    keyLabel.setBounds(864, 61, 213, 90);
+    keyLabel.setFont(new Font("Dialog", Font.BOLD, 60));
+    keyLabel.setBounds(761, 26, 335, 147);
     getContentPane().add (keyLabel); 
     quitBtn.setBounds(910, 725, 186, 69);
     quitBtn.setBackground(Color.GREEN);
@@ -64,12 +65,12 @@ public class ScoreFrame extends JFrame {
                 System.exit(0);
             }
     }); 
-    
-    scoreLabel.setForeground(Color.WHITE);
-    scoreLabel.setFont(new Font("Helvetica", Font.BOLD, 35));
-    scoreLabel.setBounds(735, 142, 548, 100);
-    
     scoreLabel.setText(scoreMessage);
+    scoreLabel.setForeground(Color.WHITE);
+    scoreLabel.setFont(new Font("Dialog", Font.BOLD, 40));
+    scoreLabel.setBounds(748, 227, 406, 100);
+    
+    
     getContentPane().add (scoreLabel); 
     playAgainBtn.setBounds(279, 142, 172, 69);
     playAgainBtn.setBackground(Color.RED);
@@ -97,18 +98,19 @@ public class ScoreFrame extends JFrame {
     
     high1.setBounds(735, 284, 548, 100);
     getContentPane().add(high1);
-    high2.setBounds(735, 430, 548, 100);
+    
+    high2.setBounds(735, 429, 548, 100);
     
     getContentPane().add(high2);
     high3.setBounds(735, 587, 548, 100);
     
     getContentPane().add(high3);
-   
+   /*
     JLabel background = new JLabel("");
     background.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\background.jpg"));
     background.setBounds(0, 0, 1920, 1080);
     getContentPane().add(background);
-    
+    */
   } 
   
   public void run(){
