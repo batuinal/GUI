@@ -113,8 +113,8 @@ public class Database
   public void createSongData()
   {
     String[] songName = new String[9];
-    songName[0] = "test";
-    //songName[0] = "I Want It That Way";
+    //songName[0] = "test";
+    songName[0] = "I Want It That Way";
     songName[1] = "We Are Family";
     songName[2] = "Winter Wonderland";
     songName[3] = "Gangnam Style";

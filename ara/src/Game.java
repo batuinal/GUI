@@ -145,7 +145,7 @@ public class Game extends JFrame implements Runnable, KeyListener
    */
   public Game(String str)
   {
-
+    songName = str;
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setBounds(100, 100, 1920, 1080);
     contentPane = new JPanel();
@@ -499,12 +499,22 @@ public class Game extends JFrame implements Runnable, KeyListener
     
     
     backgroundLabel = new JLabel("");
-    backgroundLabel.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\background.png"));
+    backgroundLabel.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\" + songName + ".png"));
+    System.out.println("D:\\481 Project\\GUI\\ara\\" + songName + ".png");
     backgroundLabel.setBounds(0, 0, 1920, 1080);
     contentPane.add(backgroundLabel);
     
 
-    
+    /* *
+      left0.setVisible(false);
+      left1.setVisible(false);
+      left2.setVisible(false);
+      left3.setVisible(false);
+      right0.setVisible(false);
+      right1.setVisible(false);
+      right2.setVisible(false);
+      right3.setVisible(false);
+    /* */
     
     
 
@@ -512,7 +522,7 @@ public class Game extends JFrame implements Runnable, KeyListener
     score = 0;
 
 
-    songName = str;
+    
     
   }
 

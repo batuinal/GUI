@@ -30,16 +30,14 @@ public class ScoreFrame extends JFrame {
 
   // Score Frame 
   ScoreFrame(int sco, String sn) {
+    //setAutoRequestFocus(false);
     // Game Background
     
-    setIconImage(Toolkit.getDefaultToolkit().getImage("/Users/olivertang/Desktop/UMICH/EECS_481/project/background.jpg"));
-    getContentPane().setBackground(new Color(230, 230, 250)); 
-    
     // JFrame Settings
-    setSize(1920,1080);
+   
     //setExtendedState(JFrame.MAXIMIZED_BOTH);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
-    
+    setBounds(100, 100, 1920, 1080);
     // Score
     //int score = Game.score; // Get game score from Game.score buton 
     score = sco;
@@ -96,7 +94,8 @@ public class ScoreFrame extends JFrame {
             }
     });
     playAgainBtn.setVisible(false);
-   
+    
+    high1.setBounds(735, 284, 548, 100);
     getContentPane().add(high1);
     high2.setBounds(735, 430, 548, 100);
     
@@ -107,9 +106,9 @@ public class ScoreFrame extends JFrame {
    
     JLabel background = new JLabel("");
     background.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\background.jpg"));
-    background.setBounds(0, 0, 1920, 1017);
+    background.setBounds(0, 0, 1920, 1080);
     getContentPane().add(background);
-    high1.setBounds(735, 284, 548, 100);
+    
   } 
   
   public void run(){
