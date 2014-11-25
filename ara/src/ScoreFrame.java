@@ -14,7 +14,6 @@ public class ScoreFrame extends JFrame {
   JLabel keyLabel = new JLabel("Game Stats"); 
   JButton playAgainBtn = new JButton ("Play Again"); 
   JButton quitBtn = new JButton ("Quit"); 
-  private final JLabel label = new JLabel("");
   
   // Game Score
   int score; 
@@ -36,7 +35,7 @@ public class ScoreFrame extends JFrame {
     // Score
     //int score = Game.score; // Get game score from Game.score buton 
     score = sco;
-    String scoreMessage = "Your final score is:\n "; 
+    String scoreMessage = BeatswithAra.username + "'s final score is:\n "; 
     scoreMessage = scoreMessage + score;
     
     getContentPane().setLayout(null);
@@ -61,7 +60,7 @@ public class ScoreFrame extends JFrame {
     
     scoreLabel.setForeground(Color.WHITE);
     scoreLabel.setFont(new Font("Helvetica", Font.BOLD, 35));
-    scoreLabel.setBounds(210, 130, 366, 163);
+    scoreLabel.setBounds(143, 128, 548, 163);
     
     scoreLabel.setText(scoreMessage);
     getContentPane().add (scoreLabel); 
@@ -77,6 +76,9 @@ public class ScoreFrame extends JFrame {
             {
                 //Execute when button is pressed
                 System.out.println("Play The song again!");
+                Refresh refresh = new Refresh();
+                refresh.run();
+                Starter.beat.run();
                 setVisible(false); 
                 dispose(); 
                 // Goes back to the home screen 
@@ -84,10 +86,7 @@ public class ScoreFrame extends JFrame {
                 
             }
     });
-    
-    label.setBounds(694, 19, 0, 0);
-    
-    getContentPane().add(label);
+    playAgainBtn.setVisible(false);
     
     JLabel lblNewLabel = new JLabel("");
     lblNewLabel.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\background.jpg"));

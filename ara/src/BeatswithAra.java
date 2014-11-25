@@ -74,6 +74,11 @@ public class BeatswithAra extends JFrame implements Runnable
   /**
    * Launch the application.
    */
+  
+  
+  
+  public static String username;
+  
   public void run()
   {
     Starter.beat.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -296,7 +301,7 @@ public class BeatswithAra extends JFrame implements Runnable
         {
           ex.printStackTrace();
         }
-        String username = textField.getText();
+        username = textField.getText();
         if(!gamedb.userexist(username))
         {
           nextID++;

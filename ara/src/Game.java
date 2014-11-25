@@ -363,7 +363,8 @@ public class Game extends JFrame implements Runnable, KeyListener
     contentPane.add(scoreLabel);
     
     titleLabel = new JLabel("");
-    titleLabel.setFont(new Font("Algerian", Font.PLAIN, 60));
+    titleLabel.setForeground(Color.BLACK);
+    titleLabel.setFont(new Font("Calibri", Font.BOLD, 65));
     titleLabel.setBounds(759, 26, 517, 113);
     contentPane.add(titleLabel);
     
@@ -382,12 +383,15 @@ public class Game extends JFrame implements Runnable, KeyListener
         execute.progress.stop();
         execute.scoreboard.stop();
         execute.gamer.dispose();
+        Refresh refresh = new Refresh();
+        refresh.run();
         Starter.beat.run();
         
       }
     });
     btnNewButton.setBounds(45, 785, 188, 150);
     contentPane.add(btnNewButton);
+    btnNewButton.setVisible(false);
     
     JButton left0 = new JButton("left0");
     left0.addActionListener(new ActionListener() {

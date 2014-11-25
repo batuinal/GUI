@@ -18,7 +18,7 @@ public class ProgressBar implements Runnable
     public void actionPerformed(ActionEvent evt) {
       //System.out.println(nextTimeStamp);
       nextTimeStamp = Animation.nextTimeStamp;
-      
+      System.out.println(nextTimeStamp);
       progress = (nextTimeStamp/lastTimestamp) * 100;
       Game.progressBar.setValue((int)progress);
     }

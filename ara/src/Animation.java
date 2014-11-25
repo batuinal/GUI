@@ -33,6 +33,7 @@ public class Animation implements Runnable
   public void run()
   {
     // While the timeStamp vector isnt empty
+    girdNum_HoldOn = -1;
     arrow = new Arrow("", 0);
     ActionListener a = new ActionListener()
     {

@@ -10,7 +10,7 @@ import javax.swing.JLabel;
 public class Refresh{
 		
 	
-	public static void main(String[] args){
+	public void run(){
 	  
 		// Refresh Animation.java
 		Animation.getScore = false;
@@ -74,7 +74,7 @@ public class Refresh{
 		Game.rightyellow4 = null; 
 		Game.rightyellow1 = null; 
 		Game.scoreLabel = null; 
-		Game.timeVector = null; 
+		Game.timeVector.removeAllElements();
 		
 		// Keyboard.java
 		
