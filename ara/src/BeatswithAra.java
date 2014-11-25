@@ -53,7 +53,7 @@ import javazoom.jl.player.Player;
 public class BeatswithAra extends JFrame implements Runnable
 {
   private JTextField textField;
-  private static int nextID = 0;
+  public static int nextID = 0;
   private final Action action = new SwingAction();
   private static Player player;
   private static execute exe;
@@ -313,7 +313,7 @@ public class BeatswithAra extends JFrame implements Runnable
         
         exe = new execute(btnsongName1.getText());
         exe.run();
-        playerThread.stop();
+        playerThread.interrupt();;
         dispose();
         System.out.println("open exe");
         

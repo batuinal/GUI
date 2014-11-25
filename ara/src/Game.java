@@ -122,12 +122,12 @@ public class Game extends JFrame implements Runnable, KeyListener
       String line = null;
       while( (line = reader.readLine()) != null )
       {
-        if(readcounter % 3 == 0){
+        //if(readcounter % 3 == 0){
           Integer currTime = Integer.parseInt(line); // convert string to integer
                                                    // // "1234" - 1234
           timeVector.add(currTime);
-        }
-        readcounter ++;
+        //}
+        //readcounter ++;
       }
       lastTimestamp = timeVector.lastElement();
       System.out.println("NumofTime = " + timeVector.size());

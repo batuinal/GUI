@@ -44,7 +44,8 @@ public class musicplayer implements Runnable
       execute.t3.interrupt();
       execute.t4.interrupt();
       execute.t5.interrupt();
-      scoreframe = new ScoreFrame(Game.score);
+      scoreframe = new ScoreFrame(Game.score, songName);
+      scoreframe.run();
       execute.gamer.dispose();
       
     }
