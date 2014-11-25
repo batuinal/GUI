@@ -43,7 +43,7 @@ public class ScoreFrame extends JFrame {
     //int score = Game.score; // Get game score from Game.score buton 
     score = sco;
     songName = sn;
-    String scoreMessage = BeatswithAra.username + "'s final score is:\n "; 
+    String scoreMessage = "Final score is:\n "; 
     scoreMessage = scoreMessage + score;
     
     getContentPane().setLayout(null);
