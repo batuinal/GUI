@@ -2,6 +2,8 @@ import gnu.io.CommPortIdentifier;
 import gnu.io.SerialPort;
 import gnu.io.SerialPortEvent;
 import gnu.io.SerialPortEventListener;
+
+import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -14,7 +16,7 @@ import java.util.Vector;
  */
 //dev/tty.*
 
-public class Serial implements SerialPortEventListener {
+public class Serial implements SerialPortEventListener, Runnable {
   
     public static class Global {
         
@@ -30,6 +32,20 @@ public class Serial implements SerialPortEventListener {
         "/dev/tty.usbmodem", // Mac OS X
         "/dev/tty.usbserial-A8008Ifx",
         "/dev/tty.usbserial-A8008HtU",
+        "COM0",
+        "COM1",
+        "COM2",
+        "COM3",
+        "COM4",
+        "COM5",
+        "COM6",
+        "COM7",
+        "COM8",
+        "COM9",
+        "COM10",
+        "COM11",
+        "COM12",
+        
 //        "/dev/usbdev", // Linux
 //        "/dev/tty", // Linux
 //        "/dev/serial", // Linux
@@ -39,6 +55,7 @@ public class Serial implements SerialPortEventListener {
     private String appName;
     private BufferedReader input;
     private OutputStream output;
+    public static int gridnumTap;
     
     private static final int TIME_OUT = 1000; // Port open timeout
     private static final int DATA_RATE = 9600; // Arduino serial port
@@ -137,7 +154,7 @@ public class Serial implements SerialPortEventListener {
                                     serialPort.getInputStream()));
                     }
                     String inputLine = input.readLine();
-                    System.out.println(inputLine);
+                    //System.out.println(inputLine);
                    
                     Global.data = Integer.parseInt(inputLine);
                    // Globals.data[i & 100] = Integer.parseInt(inputLine);
@@ -158,44 +175,29 @@ public class Serial implements SerialPortEventListener {
     }
     
     
-    public static void main(String[] args) throws Exception {
+    public void run() {
         Serial test = new Serial();
        
         if ( test.initialize() ) {
           //WRITE THE MAIN HERE
             while(true){
-              //no value received from sensors
-     /*         if(Global.data == -99){
-                System.out.println("No value received from sensors! Possibly no contact yet or Arduino connection fault!!");
-                
+              int inputline_Int = Global.data;
+              gridnumTap = -1;
+              if(inputline_Int > 0){
+                gridnumTap = inputline_Int / 10;
               }
-              //if nothing is currently being touched
-              else if(Global.data == 0){
-                System.out.println("Nothing is currently being touched!");
+              //System.out.println(Serial.gridnumTap+ " " +Animation.arrow.getgridNum());
+              if((Serial.gridnumTap == Animation.girdNum_HoldOn) && (Animation.getScore == true)){//Animation.arrow.getgridNum()){
                 
+                Game.score += 5;
+                Animation.getScore = false;
               }
-              //if more than one button is currently being pressed
-              else if(Global.data == -1){
-                System.out.println("More than one button is currently being pressed!");
-                
-              }
-              //correct input data is received, lets create the game
-              else{
-                int strength = (Global.data % 10) ;  // a value between 0 and 2, 0-> weak, 1-> medium, 2-> strong
-                int analog_pin = (Global.data - strength) / 10; // a value between 0 and 7, defines which sensor is pressed
-                
-                
-                
-              }
-              
-              
-              */
-              
+
             }
             
         }
 
         // Wait 5 seconds then shutdown
-        try { Thread.sleep(2000); } catch (InterruptedException ie) {}
+        //try { Thread.sleep(2000); } catch (InterruptedException ie) {}
     }
 }

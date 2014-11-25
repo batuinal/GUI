@@ -43,7 +43,7 @@ public class Arrow
       dir = "right";
     }
     grid = i;
-    gridNum = grid + k * 4;
+    gridNum = i + k * 4;
   }
 
   
@@ -60,6 +60,6 @@ public class Arrow
   }
   
   public int getgridNum(){
-    return 0;
+    return gridNum;
   }
 }

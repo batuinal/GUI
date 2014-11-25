@@ -57,7 +57,7 @@ public class Keyboard extends JFrame implements KeyListener{
 		  Game.score += 30;
 		}
 		*/
-		System.out.println(gridNum);
+		//System.out.println(gridNum);
 		
 	}
 

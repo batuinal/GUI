@@ -296,9 +296,6 @@ public class BeatswithAra extends JFrame implements Runnable
         {
           nextID++;
           gamedb.adduser(nextID, username);
-          Songselect songFrame = new Songselect(textField.getText());
-          songFrame.setSize(450, 500);
-          songFrame.setVisible(true);
           out.printf("Hello %s, Welcome to Beats with Ara! \n",
               textField.getText());
         }
@@ -327,9 +324,6 @@ public class BeatswithAra extends JFrame implements Runnable
         {
           nextID++;
           gamedb.adduser(nextID, username);
-          Songselect songFrame = new Songselect(textField.getText());
-          songFrame.setSize(450, 500);
-          songFrame.setVisible(true);
           out.printf("Hello %s, Welcome to Beats with Ara! \n",
               textField.getText());
         }
@@ -356,9 +350,6 @@ public class BeatswithAra extends JFrame implements Runnable
         {
           nextID++;
           gamedb.adduser(nextID, username);
-          Songselect songFrame = new Songselect(textField.getText());
-          songFrame.setSize(450, 500);
-          songFrame.setVisible(true);
           out.printf("Hello %s, Welcome to Beats with Ara! \n",
               textField.getText());
         }
@@ -380,7 +371,7 @@ public class BeatswithAra extends JFrame implements Runnable
     FontMetrics fm = canvas.getFontMetrics(defaultFont);
     int width = fm.stringWidth(textfield);
     int height = fm.getHeight();
-    System.out.println(width + " " + height); 
+    //System.out.println(width + " " + height); 
     Dimension resizeDim = new Dimension(width+40,height+10);
     return resizeDim;
     
