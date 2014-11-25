@@ -50,6 +50,7 @@ public class execute
     System.out.println("start thread 3");
     t4.start();
     t5.start();
+   
     //t6.start();
   }
 }

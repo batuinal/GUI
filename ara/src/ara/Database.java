@@ -68,15 +68,17 @@ public class Database
       // System.out.println(sql);
       stmt.executeUpdate(sql);
       sql = "CREATE TABLE SCORE "
-          + "(scoreid INTEGER, "
-          + " score INTEGER NOT NULL, "
+          + "(score INTEGER NOT NULL, "
           + " userid INTEGER, "
           + " songname CHAR(50),"
-          + " PRIMARY KEY (scoreid,userid), "
+          + " PRIMARY KEY (userid), "
           + " FOREIGN KEY (userid) REFERENCES USERINFO(userid) ON DELETE CASCADE)";
       stmt.executeUpdate(sql);
-      sql = "CREATE TABLE SONG " + "(songid INTEGER, " + "songname CHAR(50), "
-          + "songscale CHAR(10), " + "PRIMARY KEY(songid))";
+      sql = "CREATE TABLE SONG " 
+          + "(songid INTEGER, " 
+          + "songname CHAR(50), "
+          + "songscale CHAR(10), " 
+          + "PRIMARY KEY(songid))";
       stmt.executeUpdate(sql);
       System.out.println("Success to create table");
     }
@@ -111,15 +113,15 @@ public class Database
   public void createSongData()
   {
     String[] songName = new String[9];
-    songName[0] = "Happy";
+    songName[0] = "I Want It That Way";
     songName[1] = "We Are Family";
-    songName[2] = "Winter Wonderland"; 
-    songName[3] = "Happy";
-    songName[4] = "Let It Go";
-    songName[5] = "VOCALOID";
-    songName[6] = "Happy";
-    songName[7] = "Let It Go";
-    songName[8] = "VOCALOID";
+    songName[2] = "Winter Wonderland";
+    songName[3] = "Gangnam Style";
+    songName[4] = "Hello Goodbye";
+    songName[5] = "Who Let The Dogs Out";
+    songName[6] = "Hey Ya";
+    songName[7] = "Livin La Vida Loca";
+    songName[8] = "Shake It Off";
     String[] scaleLevel = new String[9];
     scaleLevel[0] = "Easy";
     scaleLevel[1] = "Easy";
@@ -127,15 +129,16 @@ public class Database
     scaleLevel[3] = "Normal";
     scaleLevel[4] = "Normal";
     scaleLevel[5] = "Normal";
-    scaleLevel[6] = "Hard"; 
-    scaleLevel[7] = "Hard"; 
-    scaleLevel[8] = "Hard"; 
+    scaleLevel[6] = "Hard";
+    scaleLevel[7] = "Hard";
+    scaleLevel[8] = "Hard";
     try
     {
-      for (int i = 0; i < 9; i++){
+      for( int i = 0; i < 9; i++ )
+      {
         stmt = con.createStatement();
-        sql = "INSERT INTO SONG (songid, songname, songscale) " + " Values (" + i
-            + ", '" + songName[i] + "','" + scaleLevel[i] + "')";
+        sql = "INSERT INTO SONG (songid, songname, songscale) " + " Values ("
+            + i + ", '" + songName[i] + "','" + scaleLevel[i] + "')";
         stmt.executeUpdate(sql);
       }
       System.out.println("Success to insert songs");
@@ -145,7 +148,7 @@ public class Database
       System.out.println("Fail to insert userinfo");
       e.printStackTrace();
     }
-    
+
   }
 
   public void adduser(int userid, String username)
@@ -208,7 +211,7 @@ public class Database
     }
     return isExist;
   }
-  
+
   public String getsongName(String scale, int songNum)
   {
     String result = "";
@@ -218,8 +221,10 @@ public class Database
       sql = "SELECT SONGNAME FROM SONG WHERE SONGSCALE = '" + scale + "'";
       ResultSet rs = stmt.executeQuery(sql);
       int counter = 1;
-      while(rs.next()){
-        if(counter == songNum){
+      while( rs.next() )
+      {
+        if( counter == songNum )
+        {
           result = rs.getString("SONGNAME");
           break;
         }
@@ -234,4 +239,54 @@ public class Database
     }
     return result;
   }
+
+  public void recordScore(int score, int userid, String songname)
+  {
+    try
+    {
+      stmt = con.createStatement();
+      sql = "INSERT INTO SCORE (score, userid, songname) " + " Values ("
+          + score + ", " + userid + ", '" + songname + "')";
+      stmt.executeUpdate(sql);
+      System.out.println("Success to insert score");
+    }
+    catch( SQLException e )
+    {
+      System.out.println("Fail to insert score");
+      e.printStackTrace();
+    }
+  }
+
+
+  public String[] getHighestScore(String songname)
+  {
+    String[] strScore;
+    strScore = new String[3];
+
+    try
+    {
+      stmt = con.createStatement();
+      sql = "SELECT SCORE, USERID FROM SCORE WHERE SONGNAME = '" + songname
+          + "' ORDER BY SCORE DESC";
+      ResultSet rs = stmt.executeQuery(sql);
+      for( int i = 0; i < 3; i++ )
+      {
+        if( rs.next() )
+        { 
+          strScore[i] = "Rank #" + i + ": SCORE " + rs.getInt("SCORE");
+        }
+        else
+        {
+          strScore[i] = "";
+        }
+      }
+    }
+    catch( SQLException e )
+    {
+      System.out.println("Fail to getscore");
+      e.printStackTrace();
+    }
+    return strScore;
+  }
+
 }

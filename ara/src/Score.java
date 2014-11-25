@@ -20,20 +20,22 @@ public class Score extends JFrame {
 	int score; 
 
 	// Score Frame 
-	Score() {
+	Score(int sco) {
 		// Game Background
 		setIconImage(Toolkit.getDefaultToolkit().getImage("/Users/olivertang/Desktop/UMICH/EECS_481/project/background.jpg"));
 		getContentPane().setBackground(new Color(230, 230, 250)); 
 		
 		// JFrame Settings
 		setSize(800,900);
+		//setExtendedState(JFrame.MAXIMIZED_BOTH);
+	
 		setVisible(true); 
 		setLocationRelativeTo(null); 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
 		
 		// Score
 		//int score = Game.score; // Get game score from Game.score buton 
-		score = 112378;
+		score = sco;
 		String scoreMessage = "Your final score is:\n "; 
 		scoreMessage = scoreMessage + score;
 		
@@ -55,7 +57,8 @@ public class Score extends JFrame {
                 setVisible(false); 
                 System.exit(0);
             }
-        }); 
+    }); 
+		
 		scoreLabel.setForeground(Color.WHITE);
 		scoreLabel.setFont(new Font("Helvetica", Font.BOLD, 35));
 		scoreLabel.setBounds(168, 128, 531, 163);
@@ -80,21 +83,27 @@ public class Score extends JFrame {
                 // Starter.beat.run();
                 
             }
-        });
+    });
+		
 		label.setBounds(694, 19, 0, 0);
 		
 		getContentPane().add(label);
 		
 		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setIcon(new ImageIcon("/Users/olivertang/Desktop/UMICH/EECS_481/project/background.jpg"));
+		lblNewLabel.setIcon(new ImageIcon("background.jpg"));
 		lblNewLabel.setBounds(0, 0, 816, 856);
 		getContentPane().add(lblNewLabel);
 		
 	}	
-	
+	/*
 	public static void main(String[] args){
-		Score score = new Score(); 
+	  
+	  // need to get score data 
+	  
+		Score score = new Score(1000); 
 	
 		//keyText.setText("Hello world"); 
 	}
+	*/
+	
 }

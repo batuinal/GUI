@@ -11,6 +11,7 @@ public class musicplayer implements Runnable
 {
   private static Player player;
   private static String songName;
+  public static ScoreFrame scoreframe;
   
   public musicplayer(String str){
     songName = str;
@@ -35,6 +36,17 @@ public class musicplayer implements Runnable
     } catch(IOException ex)
     {
        ex.printStackTrace();
+    }
+    
+    if(player.isComplete()){
+      execute.t1.interrupt();
+      execute.t2.interrupt();
+      execute.t3.interrupt();
+      execute.t4.interrupt();
+      execute.t5.interrupt();
+      scoreframe = new ScoreFrame(Game.score);
+      execute.gamer.dispose();
+      
     }
   }
   

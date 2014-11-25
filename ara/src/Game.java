@@ -80,6 +80,13 @@ public class Game extends JFrame implements Runnable, KeyListener
   private JLabel titleLabel;
   private JLabel backgroundLabel;
   private JButton btnNewButton;
+  private JButton left2;
+  private JButton left1;
+  private JButton left3;
+  private JButton right0;
+  private JButton right1;
+  private JButton right2;
+  private JButton right3;
 
 
   public static void updateArrow(boolean iseven)
@@ -146,9 +153,9 @@ public class Game extends JFrame implements Runnable, KeyListener
     setContentPane(contentPane);
     contentPane.setLayout(null);
     contentPane.setLayout(null);
-
     addKeyListener(this);
-
+    
+    //requestFocus();
 
     JLabel lblNewLabel_1 = new JLabel("");
     lblNewLabel_1.setIcon(new ImageIcon(
@@ -360,9 +367,16 @@ public class Game extends JFrame implements Runnable, KeyListener
     titleLabel.setBounds(759, 26, 517, 113);
     contentPane.add(titleLabel);
     
-    btnNewButton = new JButton("New button");
+    btnNewButton = new JButton("Back");
+    btnNewButton.setFont(new Font("Arial", Font.BOLD, 53));
     btnNewButton.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
+        //execute.t1.interrupt();
+        execute.t2.interrupt();
+        execute.t3.interrupt();
+        execute.t4.interrupt();
+        execute.t5.interrupt();
+        //execute.t1.interrupt();
         execute.animate.stop();
         execute.player.stop();
         execute.progress.stop();
@@ -372,13 +386,121 @@ public class Game extends JFrame implements Runnable, KeyListener
         
       }
     });
-    btnNewButton.setBounds(45, 785, 150, 150);
+    btnNewButton.setBounds(45, 785, 188, 150);
     contentPane.add(btnNewButton);
+    
+    JButton left0 = new JButton("left0");
+    left0.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        if( Animation.girdNum_HoldOn == 0 && Animation.getScore == true)
+        {
+          Game.score += 5;
+          Animation.getScore = false;
+        }
+      }
+    });
+    left0.setBounds(43, 128, 93, 23);
+    contentPane.add(left0);
+    
+    left1 = new JButton("left1");
+    left1.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        if( Animation.girdNum_HoldOn == 1 && Animation.getScore == true)
+        {
+          Game.score += 5;
+          Animation.getScore = false;
+        }
+      }
+    });
+    left1.setBounds(165, 128, 93, 23);
+    contentPane.add(left1);
+    
+    left2 = new JButton("left2");
+    left2.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        if( Animation.girdNum_HoldOn == 2 && Animation.getScore == true)
+        {
+          Game.score += 5;
+          Animation.getScore = false;
+        }
+      }
+    });
+    left2.setBounds(43, 174, 93, 23);
+    contentPane.add(left2);
+    
+    left3 = new JButton("left3");
+    left3.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        if( Animation.girdNum_HoldOn == 3 && Animation.getScore == true)
+        {
+          Game.score += 5;
+          Animation.getScore = false;
+        }
+      }
+    });
+    left3.setBounds(165, 174, 93, 23);
+    contentPane.add(left3);
+    
+    right0 = new JButton("right0");
+    right0.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        if( Animation.girdNum_HoldOn == 4 && Animation.getScore == true)
+        {
+          Game.score += 5;
+          Animation.getScore = false;
+        }
+      }
+    });
+    right0.setBounds(45, 263, 93, 23);
+    contentPane.add(right0);
+    
+    right1 = new JButton("right1");
+    right1.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        if( Animation.girdNum_HoldOn == 5 && Animation.getScore == true)
+        {
+          Game.score += 5;
+          Animation.getScore = false;
+        }
+      }
+    });
+    right1.setBounds(165, 263, 93, 23);
+    contentPane.add(right1);
+    
+    right2 = new JButton("right2");
+    right2.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        if( Animation.girdNum_HoldOn == 6 && Animation.getScore == true)
+        {
+          Game.score += 5;
+          Animation.getScore = false;
+        }
+      }
+    });
+    right2.setBounds(43, 305, 93, 23);
+    contentPane.add(right2);
+    
+    right3 = new JButton("right3");
+    right3.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        if( Animation.girdNum_HoldOn == 7 && Animation.getScore == true)
+        {
+          Game.score += 5;
+          Animation.getScore = false;
+        }
+      }
+    });
+    right3.setBounds(165, 305, 93, 23);
+    contentPane.add(right3);
+    
     
     backgroundLabel = new JLabel("");
     backgroundLabel.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\background.png"));
     backgroundLabel.setBounds(0, 0, 1920, 1080);
     contentPane.add(backgroundLabel);
+    
+
+    
     
     
 
@@ -387,6 +509,7 @@ public class Game extends JFrame implements Runnable, KeyListener
 
 
     songName = str;
+    
   }
 
   @Override
@@ -399,7 +522,7 @@ public class Game extends JFrame implements Runnable, KeyListener
   public void keyPressed(KeyEvent e)
   {
     // hook up 8 keys
-    System.out.println("keyPressed" + gridNum);
+    System.out.println("keyPressed");
     int keyCode = e.getKeyCode();
 
     // Q, W, A, S block
@@ -442,7 +565,7 @@ public class Game extends JFrame implements Runnable, KeyListener
       gridNum = -1;
     }
 
-    if( gridNum == Animation.girdNum_HoldOn )
+    if( gridNum == 0 )
     {
       Game.score += 5;
     }

@@ -102,22 +102,22 @@ public class BeatswithAra extends JFrame implements Runnable
     
     
     JLabel lblBeatsWithAra = new JLabel("Beats With Ara");
-    lblBeatsWithAra.setBounds(359, 93, 978, 146);
-    lblBeatsWithAra.setFont(new Font("Bradley Hand ITC", Font.PLAIN, 99));
-    lblBeatsWithAra.setForeground(Color.PINK);
+    lblBeatsWithAra.setBounds(512, 200, 978, 146);
+    lblBeatsWithAra.setFont(new Font("Calibri", Font.BOLD, 99));
+    lblBeatsWithAra.setForeground(Color.BLACK);
     lblBeatsWithAra.setVerticalAlignment(SwingConstants.TOP);
     lblBeatsWithAra.setHorizontalAlignment(SwingConstants.CENTER);
     getContentPane().add(lblBeatsWithAra);
     
     JLabel lblUsername = new JLabel("Username:");
-    lblUsername.setBounds(624, 304, 122, 36);
+    lblUsername.setBounds(863, 388, 122, 36);
     lblUsername.setAlignmentY(Component.BOTTOM_ALIGNMENT);
     lblUsername.setFont(new Font("Arial Narrow", Font.PLAIN, 30));
     getContentPane().add(lblUsername);
     
     textField = new JTextField();
     textField.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-    textField.setBounds(760, 308, 243, 36);
+    textField.setBounds(1003, 392, 243, 36);
     getContentPane().add(textField);
     textField.setColumns(10);
     
@@ -126,44 +126,49 @@ public class BeatswithAra extends JFrame implements Runnable
     btnLevel = new JButton("Level");
     btnLevel.addActionListener(new welcomeButtonListener());
     btnLevel.setFont(new Font("Calibri", Font.BOLD, 30));
-    btnLevel.setBounds(637, 485, 143, 64);
+    btnLevel.setBounds(957, 485, 143, 64);
     getContentPane().add(btnLevel);
     
     
     btnEasy = new JButton("Easy");
     btnEasy.setFont(new Font("Calibri", Font.BOLD, 30));
-    btnEasy.setBounds(808, 485, 143, 64);
+    btnEasy.setBounds(957, 485, 143, 64);
     getContentPane().add(btnEasy);
     btnEasy.addActionListener(new welcomeButtonListener());
     
     btnMedium = new JButton("Normal");
     btnMedium.setFont(new Font("Calibri", Font.BOLD, 30));
-    btnMedium.setBounds(808, 564, 143, 64);
+    btnMedium.setBounds(957, 571, 143, 64);
     getContentPane().add(btnMedium);
     btnMedium.addActionListener(new welcomeButtonListener());
     
     btnHard = new JButton("Hard");
     btnHard.setFont(new Font("Calibri", Font.BOLD, 30));
-    btnHard.setBounds(808, 645, 143, 64);
+    btnHard.setBounds(957, 658, 143, 64);
     getContentPane().add(btnHard);
     btnHard.addActionListener(new welcomeButtonListener());
     
     btnsongName1 = new JButton("");
     btnsongName1.setFont(new Font("Calibri", Font.BOLD, 30));
-    btnsongName1.setBounds(974, 485, 143, 64);
+    btnsongName1.setBounds(1132, 485, 143, 64);
     getContentPane().add(btnsongName1);
     btnsongName1.addActionListener(new welcomeButtonListener());
     
     btnsongName2 = new JButton("");
     btnsongName2.setFont(new Font("Calibri", Font.BOLD, 30));
-    btnsongName2.setBounds(974, 564, 143, 64);
+    btnsongName2.setBounds(1132, 571, 143, 64);
     getContentPane().add(btnsongName2);
     btnsongName2.addActionListener(new welcomeButtonListener());
     
     btnsongName3 = new JButton("");
     btnsongName3.setFont(new Font("Calibri", Font.BOLD, 30));
-    btnsongName3.setBounds(974, 645, 143, 64);
+    btnsongName3.setBounds(1132, 658, 143, 64);
     getContentPane().add(btnsongName3);
+    
+    JLabel background = new JLabel("");
+    background.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\main.jpg"));
+    background.setBounds(0, 0, 1920, 1080);
+    getContentPane().add(background);
     btnsongName3.addActionListener(new welcomeButtonListener());
     
     
@@ -386,5 +391,4 @@ public class BeatswithAra extends JFrame implements Runnable
     public void actionPerformed(ActionEvent e) {
     }
   }
-  
 }

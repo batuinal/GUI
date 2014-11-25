@@ -42,7 +42,7 @@ public class Animation implements Runnable
       public void actionPerformed(ActionEvent evt)
       { 
         
-        if(readCnt > 5){
+        //if(readCnt > 5){
           
           gridNum = arrow.getgrid();
           // System.out.println(gridNum);
@@ -331,7 +331,7 @@ public class Animation implements Runnable
               }
             }
           }
-        }
+    //    }
         //System.out.println(readCnt);
         readCnt ++;
         girdNum_HoldOn = arrow.getgridNum();
