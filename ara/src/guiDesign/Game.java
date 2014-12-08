@@ -1,3 +1,4 @@
+package guiDesign;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -32,17 +33,16 @@ import org.eclipse.wb.swing.FocusTraversalOnArray;
 import javax.swing.JLayeredPane;
 import javax.swing.JProgressBar;
 
-public class Game extends JFrame implements Runnable, KeyListener
+public class Game extends JFrame implements Runnable
 {
 
   private JPanel contentPane;
   private String songName;
   private int gridNum;
 
-  public static Vector<Integer> timeVector;
-  public static JProgressBar progressBar;
-  public static int lastTimestamp;
-  public static int score;
+  private static Vector<Integer> timeVector;
+  private static JProgressBar progressBar;
+  private static int score;
 
   /**
    * JLabel for the arrows
@@ -79,7 +79,7 @@ public class Game extends JFrame implements Runnable, KeyListener
   public static JLabel scoreLabel;
   private JLabel titleLabel;
   private JLabel backgroundLabel;
-  private JButton btnNewButton;
+  private JButton backButton;
   private JButton left2;
   private JButton left1;
   private JButton left3;
@@ -106,30 +106,23 @@ public class Game extends JFrame implements Runnable, KeyListener
     titleLabel.setPreferredSize(fitText(songName));
     titleLabel.setBounds(new Rectangle(titleLabel.getLocation(), titleLabel.getPreferredSize()));
     System.out.println("Initialize");
-    // Game frame = new Game("Happy.txt");
-    execute.gamer.setExtendedState(JFrame.MAXIMIZED_BOTH);
-    execute.gamer.setVisible(true);
+    setExtendedState(JFrame.MAXIMIZED_BOTH);
+    setVisible(true);
     System.out.println("Frame Create");
 
     score = 0;
     int readcounter = 0;
-    timeVector = new Vector<Integer>(); // vector of integers
+    timeVector = new Vector<Integer>();
     try
     {
-      // Read in the file
       BufferedReader reader = new BufferedReader(new FileReader(songName + ".txt"));
-      // Add all timestamps to a vector
       String line = null;
       while( (line = reader.readLine()) != null )
       {
-        //if(readcounter % 3 == 0){
-          Integer currTime = Integer.parseInt(line); // convert string to integer
-                                                   // // "1234" - 1234
+          Integer currTime = Integer.parseInt(line);
           timeVector.add(currTime);
-        //}
-        //readcounter ++;
       }
-      lastTimestamp = timeVector.lastElement();
+      
       System.out.println("NumofTime = " + timeVector.size());
     }
     catch( IOException ex )
@@ -137,13 +130,14 @@ public class Game extends JFrame implements Runnable, KeyListener
       ex.printStackTrace();
     }
     System.out.println("Readin FIle");
+    System.out.println("[Game end running]");
   }
 
 
   /**
    * Create the frame.
    */
-  public Game(String str)
+  public Game(String str, final BeatswithAra _beat)
   {
     songName = str;
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -153,7 +147,6 @@ public class Game extends JFrame implements Runnable, KeyListener
     setContentPane(contentPane);
     contentPane.setLayout(null);
     contentPane.setLayout(null);
-    addKeyListener(this);
     
     //requestFocus();
 
@@ -354,12 +347,13 @@ public class Game extends JFrame implements Runnable, KeyListener
     Border border = BorderFactory.createTitledBorder("Game Progress...");
     progressBar.setBorder(border);
     progressBar.setBounds(437, 940, 1033, 51);
+    progressBar.setValue(0);
     contentPane.add(progressBar);
 
-    scoreLabel = new JLabel("");
+    scoreLabel = new JLabel("0");
     scoreLabel.setForeground(Color.WHITE);
     scoreLabel.setFont(new Font("Showcard Gothic", Font.BOLD, 99));
-    scoreLabel.setBounds(1614, 36, 218, 183);
+    scoreLabel.setBounds(1559, 36, 335, 183);
     contentPane.add(scoreLabel);
     
     titleLabel = new JLabel("");
@@ -368,51 +362,52 @@ public class Game extends JFrame implements Runnable, KeyListener
     titleLabel.setBounds(759, 26, 517, 113);
     contentPane.add(titleLabel);
     
-    btnNewButton = new JButton("Back");
-    btnNewButton.setFont(new Font("Arial", Font.BOLD, 53));
-    btnNewButton.addActionListener(new ActionListener() {
+    backButton = new JButton("Back");
+    backButton.setFont(new Font("Arial", Font.BOLD, 53));
+    backButton.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
-        //execute.t1.interrupt();
-        execute.t2.interrupt();
-        execute.t3.interrupt();
-        execute.t4.interrupt();
-        execute.t5.interrupt();
-        //execute.t1.interrupt();
-        execute.animate.stop();
-        execute.player.stop();
-        execute.progress.stop();
-        execute.scoreboard.stop();
-        execute.gamer.dispose();
-        Refresh refresh = new Refresh();
-        refresh.run();
-        Starter.beat.run();
-        
+        Update.setBack();
+        execute.stop();
+        dispose();
+        musicplayer player = new musicplayer("sakula");
+        Thread playerThread = new Thread(player);
+        playerThread.start();
+        _beat.setVisible(true);
       }
     });
-    btnNewButton.setBounds(45, 785, 188, 150);
-    contentPane.add(btnNewButton);
-    btnNewButton.setVisible(false);
+    backButton.setBounds(45, 785, 188, 150);
+    contentPane.add(backButton);
+    //backButton.setVisible(false);
     
     JButton left0 = new JButton("left0");
     left0.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
-        if( Animation.girdNum_HoldOn == 0 && Animation.getScore == true)
+        if( Animation.getgirdNum_HoldOn() == 0 && Animation.getScorestatus() == true)
         {
-          Game.score += 5;
-          Animation.getScore = false;
+          updateScore(5);
+          Animation.updategetScore(false);
         }
       }
     });
+    
+    JButton pausebutton = new JButton("Pause");
+    pausebutton.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+      }
+    });
+    pausebutton.setFont(new Font("Arial", Font.BOLD, 53));
+    pausebutton.setBounds(45, 578, 188, 150);
+    contentPane.add(pausebutton);
     left0.setBounds(43, 128, 93, 23);
     contentPane.add(left0);
     
     left1 = new JButton("left1");
     left1.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
-        if( Animation.girdNum_HoldOn == 1 && Animation.getScore == true)
+        if( Animation.getgirdNum_HoldOn() == 1 && Animation.getScorestatus() == true)
         {
-          Game.score += 5;
-          Animation.getScore = false;
+          updateScore(5);
+          Animation.updategetScore(false);
         }
       }
     });
@@ -422,10 +417,10 @@ public class Game extends JFrame implements Runnable, KeyListener
     left2 = new JButton("left2");
     left2.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
-        if( Animation.girdNum_HoldOn == 2 && Animation.getScore == true)
+        if( Animation.getgirdNum_HoldOn() == 2 && Animation.getScorestatus() == true)
         {
-          Game.score += 5;
-          Animation.getScore = false;
+          updateScore(5);
+          Animation.updategetScore(false);
         }
       }
     });
@@ -435,10 +430,10 @@ public class Game extends JFrame implements Runnable, KeyListener
     left3 = new JButton("left3");
     left3.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
-        if( Animation.girdNum_HoldOn == 3 && Animation.getScore == true)
+        if( Animation.getgirdNum_HoldOn() == 3 && Animation.getScorestatus() == true)
         {
-          Game.score += 5;
-          Animation.getScore = false;
+          updateScore(5);
+          Animation.updategetScore(false);
         }
       }
     });
@@ -448,10 +443,10 @@ public class Game extends JFrame implements Runnable, KeyListener
     right0 = new JButton("right0");
     right0.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
-        if( Animation.girdNum_HoldOn == 4 && Animation.getScore == true)
+        if( Animation.getgirdNum_HoldOn() == 4 && Animation.getScorestatus() == true)
         {
-          Game.score += 5;
-          Animation.getScore = false;
+          updateScore(5);
+          Animation.updategetScore(false);
         }
       }
     });
@@ -461,10 +456,10 @@ public class Game extends JFrame implements Runnable, KeyListener
     right1 = new JButton("right1");
     right1.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
-        if( Animation.girdNum_HoldOn == 5 && Animation.getScore == true)
+        if( Animation.getgirdNum_HoldOn() == 5 && Animation.getScorestatus() == true)
         {
-          Game.score += 5;
-          Animation.getScore = false;
+          updateScore(5);
+          Animation.updategetScore(false);
         }
       }
     });
@@ -474,10 +469,10 @@ public class Game extends JFrame implements Runnable, KeyListener
     right2 = new JButton("right2");
     right2.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
-        if( Animation.girdNum_HoldOn == 6 && Animation.getScore == true)
+        if( Animation.getgirdNum_HoldOn() == 6 && Animation.getScorestatus() == true)
         {
-          Game.score += 5;
-          Animation.getScore = false;
+          updateScore(5);
+          Animation.updategetScore(false);
         }
       }
     });
@@ -487,10 +482,10 @@ public class Game extends JFrame implements Runnable, KeyListener
     right3 = new JButton("right3");
     right3.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
-        if( Animation.girdNum_HoldOn == 7 && Animation.getScore == true)
+        if( Animation.getgirdNum_HoldOn() == 7 && Animation.getScorestatus() == true)
         {
-          Game.score += 5;
-          Animation.getScore = false;
+          updateScore(5);
+          Animation.updategetScore(false);
         }
       }
     });
@@ -525,74 +520,26 @@ public class Game extends JFrame implements Runnable, KeyListener
     
     
   }
-
-  @Override
-  public void keyTyped(KeyEvent e)
-  {
-    // do nothing
+  
+  public static Vector<Integer> gettimeVector(){
+    return timeVector;
   }
-
-  @Override
-  public void keyPressed(KeyEvent e)
-  {
-    // hook up 8 keys
-    System.out.println("keyPressed");
-    int keyCode = e.getKeyCode();
-
-    // Q, W, A, S block
-    if( keyCode == KeyEvent.VK_Q )
-    {
-      gridNum = 0;
-    }
-    else if( keyCode == KeyEvent.VK_W )
-    {
-      gridNum = 1;
-    }
-    else if( keyCode == KeyEvent.VK_A )
-    {
-      gridNum = 2;
-    }
-    else if( keyCode == KeyEvent.VK_S )
-    {
-      gridNum = 3;
-    }
-
-    // I, O, K, L block
-    else if( keyCode == KeyEvent.VK_I )
-    {
-      gridNum = 4;
-    }
-    else if( keyCode == KeyEvent.VK_O )
-    {
-      gridNum = 5;
-    }
-    else if( keyCode == KeyEvent.VK_K )
-    {
-      gridNum = 6;
-    }
-    else if( keyCode == KeyEvent.VK_L )
-    {
-      gridNum = 7;
-    }
-    else
-    {
-      gridNum = -1;
-    }
-
-    if( gridNum == 0 )
-    {
-      Game.score += 5;
-    }
-
-    System.out.println(gridNum + "<<<<<<<<<<<<" +Animation.girdNum_HoldOn);
-
+  
+  public static void updateProgress(int progress){
+    //System.out.println(progress);
+    progressBar.setValue(progress);
   }
-
-  @Override
-  public void keyReleased(KeyEvent e)
-  {
-    // not doing anything
-
+  
+  public static void updateScore(int _score){
+    score = score + _score;
+  }
+  
+  public static int getScore(){
+    return score;
+  }
+  
+  public static void updateScoreboard(){
+    scoreLabel.setText(Integer.toString(score));
   }
   
   public Dimension fitText(String textfield) { 

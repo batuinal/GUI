@@ -1,3 +1,4 @@
+package guiDesign;
 import static java.lang.System.out;
 
 import java.awt.EventQueue;
@@ -41,7 +42,7 @@ import java.io.IOException;
 
 import javax.swing.ImageIcon;
 
-import ara.Database;
+import Database.Database;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
@@ -53,12 +54,11 @@ import javazoom.jl.player.Player;
 public class BeatswithAra extends JFrame implements Runnable
 {
   private JTextField textField;
-  public static int nextID = 0;
+  private static int nextID = 0;
   private final Action action = new SwingAction();
-  private static Player player;
   private static execute exe;
-  private static musicplayer mainplayer;
   private Thread playerThread;
+  private static musicplayer player;
   
   /*
    * Buttons on the welcome page
@@ -76,21 +76,16 @@ public class BeatswithAra extends JFrame implements Runnable
    */
   
   
-  
-  public static String username;
-  
   public void run()
   {
-    Starter.beat.setExtendedState(JFrame.MAXIMIZED_BOTH);
-    Starter.beat.setVisible(true);
-    mainplayer = new musicplayer("sakula");
-    playerThread = new Thread(mainplayer);
-    playerThread.start();
+    setExtendedState(JFrame.MAXIMIZED_BOTH);
+    setVisible(true);
   }
 
-  public BeatswithAra()
+  public BeatswithAra(musicplayer _player)
   {
-    username = "";
+    player = _player;
+    String username = "";
     Database gamedb = new Database();
     try
     {
@@ -190,6 +185,16 @@ public class BeatswithAra extends JFrame implements Runnable
     
     
   }
+  
+  //get userid
+  public static int getCurrentid(){
+    return nextID;
+  }
+  
+  
+  
+  
+  
   public class welcomeButtonListener implements ActionListener
   {
     public void actionPerformed(ActionEvent event)
@@ -293,83 +298,98 @@ public class BeatswithAra extends JFrame implements Runnable
       }
       else if(event.getSource() == btnsongName1)
       {
-        Database gamedb = new Database();
-        try
-        {
-          gamedb.connect();
+        String username = textField.getText();
+        if(username.equals("")){
+          String errorInfo = "Please enter your username!";
+          JOptionPane.showMessageDialog(BeatswithAra.this, errorInfo, "Username Error!", JOptionPane.ERROR_MESSAGE);
+        }else{
+          player.stop();
+          Database gamedb = new Database();
+          try
+          {
+            gamedb.connect();
+          }
+          catch( Exception ex )
+          {
+            ex.printStackTrace();
+          }
+          
+          if(!gamedb.userexist(username))
+          {
+            nextID++;
+            gamedb.adduser(nextID, username);
+            out.printf("Hello %s, Welcome to Beats with Ara! \n",
+                textField.getText());
+          }
+          gamedb.disconnect();
+          BeatswithAra.this.setVisible(false);
+          System.out.println("open exe");
+          exe = new execute(btnsongName1.getText(),username,BeatswithAra.this);
+          exe.run();
+          
         }
-        catch( Exception ex )
-        {
-          ex.printStackTrace();
-        }
-        username = textField.getText();
-        if(!gamedb.userexist(username))
-        {
-          nextID++;
-          gamedb.adduser(nextID, username);
-          out.printf("Hello %s, Welcome to Beats with Ara! \n",
-              textField.getText());
-        }
-        gamedb.disconnect();
-        
-        exe = new execute(btnsongName1.getText());
-        exe.run();
-        playerThread.interrupt();;
-        dispose();
-        System.out.println("open exe");
-        
       }
       else if(event.getSource() == btnsongName2)
       {
-        Database gamedb = new Database();
-        try
-        {
-          gamedb.connect();
-        }
-        catch( Exception ex )
-        {
-          ex.printStackTrace();
-        }
         String username = textField.getText();
-        if(!gamedb.userexist(username))
-        {
-          nextID++;
-          gamedb.adduser(nextID, username);
-          out.printf("Hello %s, Welcome to Beats with Ara! \n",
-              textField.getText());
+        if(username.equals("")){
+          String errorInfo = "Please enter your username!";
+          JOptionPane.showMessageDialog(BeatswithAra.this, errorInfo, "Username Error!", JOptionPane.ERROR_MESSAGE);
+        }else{
+          player.stop();
+          Database gamedb = new Database();
+          try
+          {
+            gamedb.connect();
+          }
+          catch( Exception ex )
+          {
+            ex.printStackTrace();
+          }
+          if(!gamedb.userexist(username))
+          {
+            nextID++;
+            gamedb.adduser(nextID, username);
+            out.printf("Hello %s, Welcome to Beats with Ara! \n",
+                textField.getText());
+          }
+          gamedb.disconnect();
+          BeatswithAra.this.setVisible(false);
+          System.out.println("open exe");
+          exe = new execute(btnsongName2.getText(),username,BeatswithAra.this);
+          exe.run();
         }
-        gamedb.disconnect();
-        exe = new execute(btnsongName2.getText());
-        exe.run();
-        playerThread.stop();
-        dispose();
-        System.out.println("open exe");
       }
       else if(event.getSource() == btnsongName3)
       {
-        Database gamedb = new Database();
-        try
-        {
-          gamedb.connect();
-        }
-        catch( Exception ex )
-        {
-          ex.printStackTrace();
-        }
         String username = textField.getText();
-        if(!gamedb.userexist(username))
-        {
-          nextID++;
-          gamedb.adduser(nextID, username);
-          out.printf("Hello %s, Welcome to Beats with Ara! \n",
-              textField.getText());
+        if(username.equals("")){
+          String errorInfo = "Please enter your username!";
+          JOptionPane.showMessageDialog(BeatswithAra.this, errorInfo, "Username Error!", JOptionPane.ERROR_MESSAGE);
+        }else{
+          player.stop();
+          Database gamedb = new Database();
+          try
+          {
+            gamedb.connect();
+          }
+          catch( Exception ex )
+          {
+            ex.printStackTrace();
+          }
+          if(!gamedb.userexist(username))
+          {
+            nextID++;
+            gamedb.adduser(nextID, username);
+            out.printf("Hello %s, Welcome to Beats with Ara! \n",
+                textField.getText());
+          }
+          gamedb.disconnect();
+          BeatswithAra.this.setVisible(false);
+          System.out.println("open exe");
+          exe = new execute(btnsongName3.getText(),username,BeatswithAra.this);
+          exe.run();
         }
-        gamedb.disconnect();
-        exe = new execute(btnsongName3.getText());
-        exe.run();
-        playerThread.stop();
-        dispose();
-        System.out.println("open exe");
       }
     }
     
@@ -396,5 +416,14 @@ public class BeatswithAra extends JFrame implements Runnable
     }
     public void actionPerformed(ActionEvent e) {
     }
+  }
+  
+  public static musicplayer getplayer(){
+    return player;
+  }
+  
+  public void recover(){
+    setVisible(true);
+    
   }
 }

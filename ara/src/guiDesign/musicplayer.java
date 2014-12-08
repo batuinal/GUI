@@ -1,3 +1,4 @@
+package guiDesign;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -9,12 +10,12 @@ import javazoom.jl.player.Player;
 
 public class musicplayer implements Runnable
 {
-  private static Player player;
+  protected static Player player;
+  private volatile boolean status = true;
   private static String songName;
-  public static ScoreFrame scoreframe;
   
-  public musicplayer(String str){
-    songName = str;
+  public musicplayer(String _songName){
+    songName = _songName;
   }
   
   public void run()
@@ -27,7 +28,9 @@ public class musicplayer implements Runnable
       try
       {
         player = new Player(bis);
+        System.out.println("before play");
         player.play();
+        System.out.println("after play");
         
       } catch(JavaLayerException ex1)
       {
@@ -37,22 +40,16 @@ public class musicplayer implements Runnable
     {
        ex.printStackTrace();
     }
+    /*
     
-    if(player.isComplete()){
-      execute.t1.interrupt();
-      execute.t2.interrupt();
-      execute.t3.interrupt();
-      execute.t4.interrupt();
-      execute.t5.interrupt();
-      scoreframe = new ScoreFrame(Game.score, songName);
-      scoreframe.run();
-      execute.gamer.dispose();
-      
-    }
+    */
+    //System.out.println(!player.isComplete() + " " + status);
   }
   
   public void stop()
   {
+    status = false;
+    System.out.println("[close Player]");
     player.close();
   }
 }

@@ -1,3 +1,4 @@
+package guiDesign;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -13,21 +14,22 @@ import javax.swing.Timer;
 public class Animation implements Runnable
 {
   private static Timer timer;
-  public static int nextTimeStamp;
-  public static long startTime;
-  private static int readCnt = 0; // avoid the first few beats;
-  // private static int arrowcnt;
+  private static int nextTimeStamp;
+  private static long startTime;
+  private static int readCnt = 0;
+  private static int lastTimestamp;
   
-  public static int girdNum_HoldOn;
+  private static int girdNum_HoldOn;
+  private static String gridColor_HoldOn;
   private static int gridNum;
   private static int lastgridNum;
   private static String lastColor;
   private static String lastDir;
 
   private Random rand = new Random();
-  public static Arrow arrow;
-  // public static boolean validTap;
-  public static boolean getScore;
+  private static Arrow arrow;
+  private static boolean getScore;
+  private volatile boolean status = true;
 
 
   public void run()
@@ -336,6 +338,8 @@ public class Animation implements Runnable
         //System.out.println(readCnt);
         readCnt ++;
         girdNum_HoldOn = arrow.getgridNum();
+        gridColor_HoldOn = arrow.getColor();
+        
         getScore = true;
         //System.out.println("arrow status :" + arrow.getgridNum());
         timer.stop();
@@ -348,18 +352,20 @@ public class Animation implements Runnable
     startTime = System.currentTimeMillis();
     System.out.println("Animation Start!");
     
-    while( !Game.timeVector.isEmpty() )
+    Vector<Integer> timeVector = new Vector<Integer>();
+    timeVector = (Vector<Integer>)Game.gettimeVector().clone();
+    //System.out.println("[vectorsize]" + timeVector.size());
+    lastTimestamp = timeVector.lastElement();
+    double progress = 0;
+    while( !timeVector.isEmpty() && status)
     {
         lastColor = arrow.getColor();
         lastgridNum = arrow.getgrid();
         lastDir = arrow.getDir();
         arrow.randomGenerator();
-        // System.out.println(arrow.getColor());
-        nextTimeStamp = Game.timeVector.get(0); // get first element
-        Game.timeVector.removeElementAt(0); // remove element off vector
-        //System.out.println(nextTimeStamp);
-      
-        // create a timer to execute an action at the next time
+        nextTimeStamp = timeVector.get(0);
+        timeVector.removeElementAt(0); 
+        //System.out.println("[updateProgress]" + nextTimeStamp + " " + lastTimestamp);
         int delay = (int) (long) (nextTimeStamp - (System.currentTimeMillis() - startTime)); // milliseconds
         timer = new Timer(delay, a);
         timer.start();
@@ -368,11 +374,42 @@ public class Animation implements Runnable
   
         }
         
-      }
+        
+     }
+    execute.stop();
+    status = true;
+    System.out.println("[Animate end running]");
   }
 
+  public static int getProgress(){
+    //System.out.println((int)(((double)(System.currentTimeMillis() - startTime)/(double)lastTimestamp) * 100));
+    int result = (int)(((double)(System.currentTimeMillis() - startTime)/(double)lastTimestamp) * 100);
+    if(result <= 100 && result >= 0){
+      return result;
+    }else{
+      return 0;
+    }
+  }
+  
+  public static void updategetScore(boolean _getScore){
+    getScore = _getScore;
+  }
+  
+  public static boolean getScorestatus(){
+    return getScore;
+  }
+  
+  public static int getgirdNum_HoldOn(){
+    return girdNum_HoldOn;
+  }
+  
+  public static String getgridColor_HoldOn(){
+    return gridColor_HoldOn;
+  }
+  
   public void stop()
   {
+    status = false;
     timer.stop();
   }
 }

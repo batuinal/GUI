@@ -1,3 +1,4 @@
+package guiDesign;
 import gnu.io.CommPortIdentifier;
 import gnu.io.SerialPort;
 import gnu.io.SerialPortEvent;
@@ -55,7 +56,8 @@ public class Serial implements SerialPortEventListener, Runnable {
     private String appName;
     private BufferedReader input;
     private OutputStream output;
-    public static int gridnumTap;
+    private static int gridnumTap;
+    private static int strengthTap;
     
     private static final int TIME_OUT = 1000; // Port open timeout
     private static final int DATA_RATE = 9600; // Arduino serial port
@@ -185,14 +187,29 @@ public class Serial implements SerialPortEventListener, Runnable {
               gridnumTap = -1;
               if(inputline_Int > 0){
                 gridnumTap = inputline_Int / 10;
+                strengthTap = inputline_Int % 10;
+                System.out.println(strengthTap);
               }
               //System.out.println(Serial.gridnumTap+ " " +Animation.arrow.getgridNum());
-              if((Serial.gridnumTap == Animation.girdNum_HoldOn) && (Animation.getScore == true)){//Animation.arrow.getgridNum()){
-                
-                Game.score += 5;
-                Animation.getScore = false;
+              if((gridnumTap == Animation.getgirdNum_HoldOn()) && (Animation.getScorestatus() == true)){//Animation.arrow.getgridNum()){
+                if(strengthTap == 0 && Animation.getgridColor_HoldOn().equals("green")){
+                  Game.updateScore(50);
+                }else if(strengthTap == 1 && Animation.getgridColor_HoldOn().equals("yellow")){
+                  Game.updateScore(50);
+                }else if(strengthTap == 2 && Animation.getgridColor_HoldOn().equals("red")){
+                  Game.updateScore(50);
+                }else if(strengthTap == 0 && Animation.getgridColor_HoldOn().equals("yellow")){
+                  Game.updateScore(20);
+                }else if(strengthTap == 1){
+                  Game.updateScore(20);
+                }else if(strengthTap == 2 && Animation.getgridColor_HoldOn().equals("yellow")){
+                  Game.updateScore(20);
+                }else{
+                  Game.updateScore(20);
+                }
+                Animation.updategetScore(false);
               }
-
+              Game.updateScoreboard();
             }
             
         }

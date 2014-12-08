@@ -1,4 +1,4 @@
-package ara;
+package Database;
 
 import java.sql.DriverManager;
 import java.sql.Connection;
@@ -70,9 +70,7 @@ public class Database
       sql = "CREATE TABLE SCORE "
           + "(score INTEGER NOT NULL, "
           + " userid INTEGER, "
-          + " songname CHAR(50),"
-          + " PRIMARY KEY (userid), "
-          + " FOREIGN KEY (userid) REFERENCES USERINFO(userid) ON DELETE CASCADE)";
+          + " songname CHAR(50))";
       stmt.executeUpdate(sql);
       sql = "CREATE TABLE SONG " 
           + "(songid INTEGER, " 
@@ -94,12 +92,12 @@ public class Database
     try
     {
       stmt = con.createStatement();
-      sql = "DROP TABLE SCORE";
-      // System.out.println(sql);
-      stmt.executeUpdate(sql);
       sql = "DROP TABLE USERINFO ";
       stmt.executeUpdate(sql);
       sql = "DROP TABLE SONG";
+      stmt.executeUpdate(sql);
+      sql = "DROP TABLE SCORE";
+      // System.out.println(sql);
       stmt.executeUpdate(sql);
       System.out.println("Success to drop table");
     }
@@ -274,7 +272,7 @@ public class Database
       {
         if( rs.next() )
         { 
-          strScore[i] = "Rank #" + i + ": SCORE " + rs.getInt("SCORE");
+          strScore[i] = String.valueOf(rs.getInt("SCORE"));
         }
         else
         {
