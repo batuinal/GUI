@@ -64,17 +64,17 @@ public class Database
     {
       stmt = con.createStatement();
       sql = "CREATE TABLE USERINFO " + "(userid INTEGER, "
-          + " username CHAR(20) NOT NULL, " + " PRIMARY KEY (userid))";
+          + " username CHAR(50) NOT NULL, " + " PRIMARY KEY (userid))";
       // System.out.println(sql);
       stmt.executeUpdate(sql);
       sql = "CREATE TABLE SCORE "
           + "(score INTEGER NOT NULL, "
           + " userid INTEGER, "
-          + " songname CHAR(50))";
+          + " songname CHAR(100))";
       stmt.executeUpdate(sql);
       sql = "CREATE TABLE SONG " 
           + "(songid INTEGER, " 
-          + "songname CHAR(50), "
+          + "songname CHAR(100), "
           + "songscale CHAR(10), " 
           + "PRIMARY KEY(songid))";
       stmt.executeUpdate(sql);
@@ -110,7 +110,7 @@ public class Database
 
   public void createSongData()
   {
-    String[] songName = new String[9];
+    String[] songName = new String[12];
     //songName[0] = "test";
     songName[0] = "I Want It That Way";
     songName[1] = "We Are Family";
@@ -121,7 +121,10 @@ public class Database
     songName[6] = "Hey Ya";
     songName[7] = "Livin La Vida Loca";
     songName[8] = "Shake It Off";
-    String[] scaleLevel = new String[9];
+    songName[9] = "All I Want For Christmas Is You";
+    songName[10] = "Here Comes Santa Claus";
+    songName[11] = "Winter Wonderland";
+    String[] scaleLevel = new String[12];
     scaleLevel[0] = "Easy";
     scaleLevel[1] = "Easy";
     scaleLevel[2] = "Easy";
@@ -131,9 +134,12 @@ public class Database
     scaleLevel[6] = "Hard";
     scaleLevel[7] = "Hard";
     scaleLevel[8] = "Hard";
+    scaleLevel[9] = "Christ";
+    scaleLevel[10] = "Christ";
+    scaleLevel[11] = "Christ";
     try
     {
-      for( int i = 0; i < 9; i++ )
+      for( int i = 0; i < 12; i++ )
       {
         stmt = con.createStatement();
         sql = "INSERT INTO SONG (songid, songname, songscale) " + " Values ("
