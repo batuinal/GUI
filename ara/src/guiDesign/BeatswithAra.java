@@ -68,6 +68,7 @@ public class BeatswithAra extends JFrame implements Runnable
   private JButton btnEasy;
   private JButton btnMedium;
   private JButton btnHard;
+  private JButton btnSpecial;
   private JButton btnsongName1;
   private JButton btnsongName2;
   private JButton btnsongName3;
@@ -149,6 +150,13 @@ public class BeatswithAra extends JFrame implements Runnable
     getContentPane().add(btnHard);
     btnHard.addActionListener(new welcomeButtonListener());
     
+    btnSpecial = new JButton("<html>Holiday<br />Special</html>");
+    btnSpecial.setFont(new Font("Calibri", Font.BOLD, 30));
+    btnSpecial.setBounds(956, 756, 143, 123);
+    getContentPane().add(btnSpecial);
+    btnSpecial.addActionListener(new welcomeButtonListener());
+    
+    
     btnsongName1 = new JButton("");
     btnsongName1.setFont(new Font("Calibri", Font.BOLD, 30));
     btnsongName1.setBounds(1132, 485, 143, 64);
@@ -166,6 +174,8 @@ public class BeatswithAra extends JFrame implements Runnable
     btnsongName3.setBounds(1132, 658, 143, 64);
     getContentPane().add(btnsongName3);
     
+    
+    
     JLabel background = new JLabel("");
     background.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\main.jpg"));
     background.setBounds(0, 0, 1920, 1080);
@@ -179,9 +189,11 @@ public class BeatswithAra extends JFrame implements Runnable
     btnEasy.setVisible(false);
     btnMedium.setVisible(false);
     btnHard.setVisible(false);
+    btnSpecial.setVisible(false);
     btnsongName1.setVisible(false);
     btnsongName2.setVisible(false);
     btnsongName3.setVisible(false);
+    
     
     
   }
@@ -205,6 +217,7 @@ public class BeatswithAra extends JFrame implements Runnable
         btnEasy.setVisible(true);
         btnMedium.setVisible(true);
         btnHard.setVisible(true);
+        btnSpecial.setVisible(true);
       }
       else if(event.getSource() == btnEasy)
       {
@@ -287,6 +300,36 @@ public class BeatswithAra extends JFrame implements Runnable
         btnsongName2.setPreferredSize(fitText(songName));
         btnsongName2.setBounds(new Rectangle(btnsongName2.getLocation(), btnsongName2.getPreferredSize()));
         songName = gamedb.getsongName("Hard", 3);
+        btnsongName3.setText(songName);
+        btnsongName3.setPreferredSize(fitText(songName));
+        btnsongName3.setBounds(new Rectangle(btnsongName3.getLocation(), btnsongName3.getPreferredSize()));
+        gamedb.disconnect();
+        
+        btnsongName1.setVisible(true);
+        btnsongName2.setVisible(true);
+        btnsongName3.setVisible(true);
+      }
+      else if(event.getSource() == btnSpecial)
+      {
+        Database gamedb = new Database();
+        String songName = "";
+        try
+        {
+          gamedb.connect();
+        }
+        catch( Exception ex )
+        {
+          ex.printStackTrace();
+        }
+        songName = gamedb.getsongName("Christ", 1);
+        btnsongName1.setText(songName);
+        btnsongName1.setPreferredSize(fitText(songName));
+        btnsongName1.setBounds(new Rectangle(btnsongName1.getLocation(), btnsongName1.getPreferredSize()));
+        songName = gamedb.getsongName("Christ", 2);
+        btnsongName2.setText(songName);
+        btnsongName2.setPreferredSize(fitText(songName));
+        btnsongName2.setBounds(new Rectangle(btnsongName2.getLocation(), btnsongName2.getPreferredSize()));
+        songName = gamedb.getsongName("Christ", 3);
         btnsongName3.setText(songName);
         btnsongName3.setPreferredSize(fitText(songName));
         btnsongName3.setBounds(new Rectangle(btnsongName3.getLocation(), btnsongName3.getPreferredSize()));
