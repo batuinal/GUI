@@ -38,6 +38,7 @@ public class Game extends JFrame implements Runnable
 
   private JPanel contentPane;
   private String songName;
+  private static String userName;
   private int gridNum;
 
   private static Vector<Integer> timeVector;
@@ -87,6 +88,7 @@ public class Game extends JFrame implements Runnable
   private JButton right1;
   private JButton right2;
   private JButton right3;
+  private JLabel playerLabel;
 
 
   public static void updateArrow(boolean iseven)
@@ -137,9 +139,10 @@ public class Game extends JFrame implements Runnable
   /**
    * Create the frame.
    */
-  public Game(String str, final BeatswithAra _beat)
+  public Game(String _songName, String _userName, final BeatswithAra _beat)
   {
-    songName = str;
+    songName = _songName;
+    userName = _userName;
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setBounds(100, 100, 1920, 1080);
     contentPane = new JPanel();
@@ -357,9 +360,10 @@ public class Game extends JFrame implements Runnable
     contentPane.add(scoreLabel);
     
     titleLabel = new JLabel("");
+    titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
     titleLabel.setForeground(Color.BLACK);
     titleLabel.setFont(new Font("Calibri", Font.BOLD, 65));
-    titleLabel.setBounds(759, 26, 517, 113);
+    titleLabel.setBounds(600, 10, 683, 113);
     contentPane.add(titleLabel);
     
     backButton = new JButton("Back");
@@ -389,15 +393,6 @@ public class Game extends JFrame implements Runnable
         }
       }
     });
-    
-    JButton pausebutton = new JButton("Pause");
-    pausebutton.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-      }
-    });
-    pausebutton.setFont(new Font("Arial", Font.BOLD, 53));
-    pausebutton.setBounds(45, 578, 188, 150);
-    contentPane.add(pausebutton);
     left0.setBounds(43, 128, 93, 23);
     contentPane.add(left0);
     
@@ -496,6 +491,18 @@ public class Game extends JFrame implements Runnable
     backgroundLabel = new JLabel("");
     backgroundLabel.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\" + songName + ".png"));
     System.out.println("D:\\481 Project\\GUI\\ara\\" + songName + ".png");
+    
+    JLabel usernameLabel = new JLabel(userName);
+    usernameLabel.setForeground(Color.BLACK);
+    usernameLabel.setFont(new Font("Calibri", Font.PLAIN, 40));
+    usernameLabel.setBounds(43, 449, 302, 73);
+    contentPane.add(usernameLabel);
+    
+    playerLabel = new JLabel("Player:");
+    playerLabel.setForeground(Color.BLACK);
+    playerLabel.setFont(new Font("Calibri", Font.PLAIN, 40));
+    playerLabel.setBounds(43, 388, 302, 73);
+    contentPane.add(playerLabel);
     backgroundLabel.setBounds(0, 0, 1920, 1080);
     contentPane.add(backgroundLabel);
     

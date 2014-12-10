@@ -24,7 +24,7 @@ public class execute
   //public static void main(String[] agrc)
   {
     //songName = "We Are Family";
-    gamer = new Game(songName,beat);
+    gamer = new Game(songName, userName, beat);
     gamer.run();
     
     player = new musicplayer(songName);

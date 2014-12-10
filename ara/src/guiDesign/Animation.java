@@ -178,22 +178,22 @@ public class Animation implements Runnable
             {
               if( gridNum == 0 )
               { // first grid
-                Game.rightgreen1.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\rightgreen.gif"));
+                Game.rightgreen1.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\rightgreen.png"));
                 Game.rightgreen1.setVisible(true);
               }
               else if( gridNum == 1 )
               { // second grid
-                Game.rightgreen2.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\rightgreen.gif"));
+                Game.rightgreen2.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\rightgreen.png"));
                 Game.rightgreen2.setVisible(true);
               }
               else if( gridNum == 2 )
               { // third grid
-                Game.rightgreen3.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\rightgreen.gif"));
+                Game.rightgreen3.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\rightgreen.png"));
                 Game.rightgreen3.setVisible(true);
               }
               else
               {
-                Game.rightgreen4.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\rightgreen.gif"));
+                Game.rightgreen4.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\rightgreen.png"));
                 Game.rightgreen4.setVisible(true);
               }
             }
@@ -201,24 +201,24 @@ public class Animation implements Runnable
             {
               if( gridNum == 0 )
               { // first grid
-                Game.rightred1.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\rightred.gif"));
+                Game.rightred1.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\rightred.png"));
                 Game.rightred1.setVisible(true);
               }
               else if( gridNum == 1 )
               { // second grid
-                Game.rightred2.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\rightred.gif"));
+                Game.rightred2.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\rightred.png"));
                 Game.rightred2.setVisible(true);
   
               }
               else if( gridNum == 2 )
               { // third grid
-                Game.rightred3.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\rightred.gif"));
+                Game.rightred3.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\rightred.png"));
                 Game.rightred3.setVisible(true);
   
               }
               else
               {
-                Game.rightred4.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\rightred.gif"));
+                Game.rightred4.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\rightred.png"));
                 Game.rightred4.setVisible(true);
   
               }
@@ -227,25 +227,25 @@ public class Animation implements Runnable
             {
               if( gridNum == 0 )
               { // first grid
-                Game.rightyellow1.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\rightyellow.gif"));
+                Game.rightyellow1.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\rightyellow.png"));
                 Game.rightyellow1.setVisible(true);
   
               }
               else if( gridNum == 1 )
               { // second grid
-                Game.rightyellow2.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\rightyellow.gif"));
+                Game.rightyellow2.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\rightyellow.png"));
                 Game.rightyellow2.setVisible(true);
   
               }
               else if( gridNum == 2 )
               { // third grid
-                Game.rightyellow3.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\rightyellow.gif"));
+                Game.rightyellow3.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\rightyellow.png"));
                 Game.rightyellow3.setVisible(true);
   
               }
               else
               {
-                Game.rightyellow4.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\rightyellow.gif"));
+                Game.rightyellow4.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\rightyellow.png"));
                 Game.rightyellow4.setVisible(true);
               }
             }
@@ -256,25 +256,25 @@ public class Animation implements Runnable
             {
               if( gridNum == 0 )
               { // first grid
-                Game.leftgreen1.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\leftgreen.gif"));
+                Game.leftgreen1.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\leftgreen.png"));
                 Game.leftgreen1.setVisible(true);
   
               }
               else if( gridNum == 1 )
               { // second grid
-                Game.leftgreen2.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\leftgreen.gif"));
+                Game.leftgreen2.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\leftgreen.png"));
                 Game.leftgreen2.setVisible(true);
   
               }
               else if( gridNum == 2 )
               { // third grid
-                Game.leftgreen3.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\leftgreen.gif"));
+                Game.leftgreen3.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\leftgreen.png"));
                 Game.leftgreen3.setVisible(true);
   
               }
               else
               {
-                Game.leftgreen4.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\leftgreen.gif"));
+                Game.leftgreen4.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\leftgreen.png"));
                 Game.leftgreen4.setVisible(true);
   
               }
@@ -283,25 +283,25 @@ public class Animation implements Runnable
             {
               if( gridNum == 0 )
               { // first grid
-                Game.leftred1.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\leftred.gif"));
+                Game.leftred1.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\leftred.png"));
                 Game.leftred1.setVisible(true);
   
               }
               else if( gridNum == 1 )
               { // second grid
-                Game.leftred2.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\leftred.gif"));
+                Game.leftred2.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\leftred.png"));
                 Game.leftred2.setVisible(true);
   
               }
               else if( gridNum == 2 )
               { // third grid
-                Game.leftred3.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\leftred.gif"));
+                Game.leftred3.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\leftred.png"));
                 Game.leftred3.setVisible(true);
   
               }
               else
               {
-                Game.leftred4.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\leftred.gif"));
+                Game.leftred4.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\leftred.png"));
                 Game.leftred4.setVisible(true);
   
               }
@@ -310,25 +310,25 @@ public class Animation implements Runnable
             {
               if( gridNum == 0 )
               { // first grid
-                Game.leftyellow1.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\leftyellow.gif"));
+                Game.leftyellow1.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\leftyellow.png"));
                 Game.leftyellow1.setVisible(true);
   
               }
               else if( gridNum == 1 )
               { // second grid
-                Game.leftyellow2.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\leftyellow.gif"));
+                Game.leftyellow2.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\leftyellow.png"));
                 Game.leftyellow2.setVisible(true);
   
               }
               else if( gridNum == 2 )
               { // third grid
-                Game.leftyellow3.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\leftyellow.gif"));
+                Game.leftyellow3.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\leftyellow.png"));
                 Game.leftyellow3.setVisible(true);
   
               }
               else
               {
-                Game.leftyellow4.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\leftyellow.gif"));
+                Game.leftyellow4.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\leftyellow.png"));
                 Game.leftyellow4.setVisible(true);
   
               }

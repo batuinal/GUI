@@ -26,12 +26,21 @@ public class ScoreFrame extends JFrame
   private static int score;
   private static String songName;
   private static String userName;
+  private static JLabel scoreLabel;
   /**
    * Launch the application.
    */
   public void run(){
     setExtendedState(JFrame.MAXIMIZED_BOTH);
     setVisible(true);
+    for(int i = 0; i <= score; i++){
+      long currentTime = System.currentTimeMillis();
+      while((System.currentTimeMillis() - currentTime) < 10){
+        
+      }
+      scoreLabel.setText(String.valueOf(i));
+    }
+    
   }
 
   /**
@@ -47,8 +56,8 @@ public class ScoreFrame extends JFrame
     setBounds(100, 100, 1920, 1080);
     getContentPane().setLayout(null);
     
-    JLabel Score = new JLabel("Score");
-    Score.setBounds(715, 43, 449, 146);
+    JLabel Score = new JLabel("Score Board");
+    Score.setBounds(670, 43, 523, 146);
     Score.setFont(new Font("Calibri", Font.BOLD, 99));
     Score.setForeground(Color.WHITE);
     Score.setVerticalAlignment(SwingConstants.TOP);
@@ -116,15 +125,15 @@ public class ScoreFrame extends JFrame
     userScoreLabel.setHorizontalAlignment(SwingConstants.LEFT);
     userScoreLabel.setForeground(Color.BLACK);
     userScoreLabel.setFont(new Font("Calibri", Font.BOLD, 99));
-    userScoreLabel.setBounds(464, 685, 516, 146);
+    userScoreLabel.setBounds(599, 685, 516, 146);
     getContentPane().add(userScoreLabel);
     
-    JLabel scoreLabel = new JLabel(String.valueOf(score));
+    scoreLabel = new JLabel("0");
     scoreLabel.setVerticalAlignment(SwingConstants.TOP);
     scoreLabel.setHorizontalAlignment(SwingConstants.LEFT);
     scoreLabel.setForeground(Color.BLACK);
     scoreLabel.setFont(new Font("Calibri", Font.BOLD, 99));
-    scoreLabel.setBounds(990, 685, 789, 146);
+    scoreLabel.setBounds(1141, 685, 789, 146);
     getContentPane().add(scoreLabel);
     
     JButton backButton = new JButton("Back");
@@ -140,7 +149,7 @@ public class ScoreFrame extends JFrame
     backButton.setForeground(Color.BLACK);
     backButton.setBackground(Color.WHITE);
     backButton.setFont(new Font("Calibri", Font.BOLD, 30));
-    backButton.setBounds(764, 797, 144, 74);
+    backButton.setBounds(730, 797, 144, 74);
     getContentPane().add(backButton);
     
     JButton quitButton = new JButton("Quit");
@@ -154,6 +163,26 @@ public class ScoreFrame extends JFrame
     quitButton.setBackground(Color.WHITE);
     quitButton.setBounds(971, 797, 144, 74);
     getContentPane().add(quitButton);
+    
+    JLabel fireLabel1 = new JLabel("");
+    fireLabel1.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\Fireworks.gif"));
+    fireLabel1.setBounds(98, 375, 244, 117);
+    getContentPane().add(fireLabel1);
+    
+    JLabel fireLabel2 = new JLabel("");
+    fireLabel2.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\Fireworks.gif"));
+    fireLabel2.setBounds(310, 829, 244, 117);
+    getContentPane().add(fireLabel2);
+    
+    JLabel fireLabel3 = new JLabel("");
+    fireLabel3.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\Fireworks.gif"));
+    fireLabel3.setBounds(1123, 275, 244, 117);
+    getContentPane().add(fireLabel3);
+    
+    JLabel fireLabel4 = new JLabel("");
+    fireLabel4.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\Fireworks.gif"));
+    fireLabel4.setBounds(1200, 596, 244, 117);
+    getContentPane().add(fireLabel4);
     
     
     JLabel background = new JLabel("");
