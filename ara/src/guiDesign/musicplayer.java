@@ -10,9 +10,9 @@ import javazoom.jl.player.Player;
 
 public class musicplayer implements Runnable
 {
-  protected static Player player;
+  protected Player player;
   private volatile boolean status = true;
-  private static String songName;
+  private String songName;
   
   public musicplayer(String _songName){
     songName = _songName;
@@ -48,7 +48,6 @@ public class musicplayer implements Runnable
   
   public void stop()
   {
-    status = false;
     System.out.println("[close Player]");
     player.close();
   }

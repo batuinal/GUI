@@ -49,9 +49,9 @@ public class Animation implements Runnable
           
           gridNum = arrow.getgrid();
           // System.out.println(gridNum);
-          if( lastDir == "right" )
+          if( lastDir.equals("right") )
           {
-            if( lastColor == "green" )
+            if( lastColor.equals("green") )
             {
               if( lastgridNum == 0 )
               {
@@ -70,7 +70,7 @@ public class Animation implements Runnable
                 Game.rightgreen4.setVisible(false);
               }
             }
-            else if( lastColor == "red" )
+            else if( lastColor.equals("red") )
             {
               if( lastgridNum == 0 )
               {
@@ -112,7 +112,7 @@ public class Animation implements Runnable
           }
           else
           {
-            if( lastColor == "green" )
+            if( lastColor.equals("green") )
             {
               if( lastgridNum == 0 )
               {
@@ -131,7 +131,7 @@ public class Animation implements Runnable
                 Game.leftgreen4.setVisible(false);
               }
             }
-            else if( lastColor == "red" )
+            else if( lastColor.equals("red") )
             {
               if( lastgridNum == 0 )
               {
@@ -172,9 +172,9 @@ public class Animation implements Runnable
             }
           }
   
-          if( arrow.getDir() == "right" )
+          if( arrow.getDir().equals("right") )
           {
-            if( arrow.getColor() == "green" )
+            if( arrow.getColor().equals("green") )
             {
               if( gridNum == 0 )
               { // first grid
@@ -197,7 +197,7 @@ public class Animation implements Runnable
                 Game.rightgreen4.setVisible(true);
               }
             }
-            else if( arrow.getColor() == "red" )
+            else if( arrow.getColor().equals("red") )
             {
               if( gridNum == 0 )
               { // first grid
@@ -252,7 +252,7 @@ public class Animation implements Runnable
           }
           else
           { // Left Dir
-            if( arrow.getColor() == "green" )
+            if( arrow.getColor().equals("green") )
             {
               if( gridNum == 0 )
               { // first grid
@@ -279,7 +279,7 @@ public class Animation implements Runnable
   
               }
             }
-            else if( arrow.getColor() == "red" )
+            else if( arrow.getColor() .equals("red") )
             {
               if( gridNum == 0 )
               { // first grid
@@ -363,6 +363,7 @@ public class Animation implements Runnable
         lastgridNum = arrow.getgrid();
         lastDir = arrow.getDir();
         arrow.randomGenerator();
+        arrow.ifsame(lastColor, lastgridNum, lastDir);
         nextTimeStamp = timeVector.get(0);
         timeVector.removeElementAt(0); 
         //System.out.println("[updateProgress]" + nextTimeStamp + " " + lastTimestamp);

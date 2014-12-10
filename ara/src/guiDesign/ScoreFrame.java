@@ -140,8 +140,7 @@ public class ScoreFrame extends JFrame
     backButton.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
         dispose();
-        musicplayer player = new musicplayer("sakula");
-        Thread playerThread = new Thread(player);
+        Thread playerThread = new Thread(BeatswithAra.player);
         playerThread.start();
         _beat.setVisible(true);
       }

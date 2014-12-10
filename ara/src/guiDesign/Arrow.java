@@ -63,4 +63,14 @@ public class Arrow
   public int getgridNum(){
     return gridNum;
   }
+  
+  public void ifsame(String _color, int _gridNum, String _dir){
+    if(color.equals(_color) && gridNum == _gridNum && dir.equals(_dir)){
+      if(dir.equals("left")){
+        dir = "right";
+      }else{
+        dir = "left";
+      }
+    }
+  }
 }
