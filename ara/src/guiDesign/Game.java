@@ -89,6 +89,7 @@ public class Game extends JFrame implements Runnable
   private JButton right2;
   private JButton right3;
   private JLabel playerLabel;
+  private static musicplayer correctSound;
 
 
   public static void updateArrow(boolean iseven)
@@ -104,9 +105,11 @@ public class Game extends JFrame implements Runnable
    */
   public void run()
   {
+    /*
     titleLabel.setText(songName);
     titleLabel.setPreferredSize(fitText(songName));
     titleLabel.setBounds(new Rectangle(titleLabel.getLocation(), titleLabel.getPreferredSize()));
+    */
     System.out.println("Initialize");
     setExtendedState(JFrame.MAXIMIZED_BOTH);
     setVisible(true);
@@ -164,7 +167,7 @@ public class Game extends JFrame implements Runnable
     /************************************************************* Right **********************************************************************/
 
     rightgreen1 = new JLabel("");
-    rightgreen1.setBounds(497, 191, 333, 248);
+    rightgreen1.setBounds(497, 213, 333, 248);
     rightgreen1.setIcon(new ImageIcon(
         "D:\\481 Project\\GUI\\ara\\rightgreen.gif"));
     rightgreen1.setVisible(false);
@@ -339,7 +342,7 @@ public class Game extends JFrame implements Runnable
     /****************************************************************************************************************************************/
 
     Grids = new JLabel("");
-    Grids.setBounds(355, 88, 1194, 864);
+    Grids.setBounds(355, 102, 1194, 864);
     contentPane.add(Grids);
     Grids.setIcon(new ImageIcon("D:\\481 Project\\GUI\\ara\\Grids.png"));
 
@@ -359,11 +362,11 @@ public class Game extends JFrame implements Runnable
     scoreLabel.setBounds(1559, 36, 335, 183);
     contentPane.add(scoreLabel);
     
-    titleLabel = new JLabel("");
+    titleLabel = new JLabel(songName);
     titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
     titleLabel.setForeground(Color.BLACK);
     titleLabel.setFont(new Font("Calibri", Font.BOLD, 65));
-    titleLabel.setBounds(600, 10, 683, 113);
+    titleLabel.setBounds(369, 10, 1148, 113);
     contentPane.add(titleLabel);
     
     backButton = new JButton("Back");
@@ -373,8 +376,7 @@ public class Game extends JFrame implements Runnable
         Update.setBack();
         execute.stop();
         dispose();
-        musicplayer player = new musicplayer("sakula");
-        Thread playerThread = new Thread(player);
+        Thread playerThread = new Thread(BeatswithAra.player);
         playerThread.start();
         _beat.setVisible(true);
       }
@@ -383,12 +385,16 @@ public class Game extends JFrame implements Runnable
     contentPane.add(backButton);
     //backButton.setVisible(false);
     
+    correctSound = new musicplayer("correct");
     JButton left0 = new JButton("left0");
     left0.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
         if( Animation.getgirdNum_HoldOn() == 0 && Animation.getScorestatus() == true)
         {
+          
           updateScore(5);
+          Thread correctThread = new Thread(correctSound);
+          correctThread.start();
           Animation.updategetScore(false);
         }
       }
@@ -402,6 +408,8 @@ public class Game extends JFrame implements Runnable
         if( Animation.getgirdNum_HoldOn() == 1 && Animation.getScorestatus() == true)
         {
           updateScore(5);
+          Thread correctThread = new Thread(correctSound);
+          correctThread.start();
           Animation.updategetScore(false);
         }
       }
@@ -415,6 +423,8 @@ public class Game extends JFrame implements Runnable
         if( Animation.getgirdNum_HoldOn() == 2 && Animation.getScorestatus() == true)
         {
           updateScore(5);
+          Thread correctThread = new Thread(correctSound);
+          correctThread.start();
           Animation.updategetScore(false);
         }
       }
@@ -428,6 +438,8 @@ public class Game extends JFrame implements Runnable
         if( Animation.getgirdNum_HoldOn() == 3 && Animation.getScorestatus() == true)
         {
           updateScore(5);
+          Thread correctThread = new Thread(correctSound);
+          correctThread.start();
           Animation.updategetScore(false);
         }
       }
@@ -441,6 +453,8 @@ public class Game extends JFrame implements Runnable
         if( Animation.getgirdNum_HoldOn() == 4 && Animation.getScorestatus() == true)
         {
           updateScore(5);
+          Thread correctThread = new Thread(correctSound);
+          correctThread.start();
           Animation.updategetScore(false);
         }
       }
@@ -454,6 +468,8 @@ public class Game extends JFrame implements Runnable
         if( Animation.getgirdNum_HoldOn() == 5 && Animation.getScorestatus() == true)
         {
           updateScore(5);
+          Thread correctThread = new Thread(correctSound);
+          correctThread.start();
           Animation.updategetScore(false);
         }
       }
@@ -467,6 +483,8 @@ public class Game extends JFrame implements Runnable
         if( Animation.getgirdNum_HoldOn() == 6 && Animation.getScorestatus() == true)
         {
           updateScore(5);
+          Thread correctThread = new Thread(correctSound);
+          correctThread.start();
           Animation.updategetScore(false);
         }
       }
@@ -480,6 +498,8 @@ public class Game extends JFrame implements Runnable
         if( Animation.getgirdNum_HoldOn() == 7 && Animation.getScorestatus() == true)
         {
           updateScore(5);
+          Thread correctThread = new Thread(correctSound);
+          correctThread.start();
           Animation.updategetScore(false);
         }
       }
@@ -503,6 +523,10 @@ public class Game extends JFrame implements Runnable
     playerLabel.setFont(new Font("Calibri", Font.PLAIN, 40));
     playerLabel.setBounds(43, 388, 302, 73);
     contentPane.add(playerLabel);
+    
+    JLabel feedbackLabel = new JLabel("");
+    feedbackLabel.setBounds(1595, 319, 54, 15);
+    contentPane.add(feedbackLabel);
     backgroundLabel.setBounds(0, 0, 1920, 1080);
     contentPane.add(backgroundLabel);
     

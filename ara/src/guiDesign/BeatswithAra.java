@@ -58,7 +58,7 @@ public class BeatswithAra extends JFrame implements Runnable
   private final Action action = new SwingAction();
   private static execute exe;
   private Thread playerThread;
-  private static musicplayer player;
+  protected static musicplayer player;
   
   /*
    * Buttons on the welcome page
